@@ -1,0 +1,2 @@
+# CFSim
+Counterfactuals simulator tool
