@@ -9,6 +9,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { MaterialModule } from './material/material';
 import { DatasetOverviewComponent } from './components/dataset-overview/dataset-overview.component';
 import { ParameterSelectorComponent } from './components/parameter-selector/parameter-selector.component';
+import { CounterfactualListComponent } from './components/counterfactual-list/counterfactual-list.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ParameterSelectorComponent } from './components/parameter-selector/para
     MainViewComponent,
     ToolbarComponent,
     DatasetOverviewComponent,
-    ParameterSelectorComponent
+    ParameterSelectorComponent,
+    CounterfactualListComponent
   ],
   imports: [
     BrowserModule,
