@@ -1,0 +1,28 @@
+<div class="component-wrapper">
+
+    <div class="card-container">
+
+        <mat-card>
+            <div class="card-content">
+
+                <div 
+                    *ngFor='let attribute of counterfactual.perturbations | keyvalue' 
+                    class="perturbation-container">
+
+                    <div class="perturbation-header">
+                        <p><b>{{ attribute.key }}</b></p>
+                    </div>
+
+                    <div class="perturbation-body">
+                        <img *ngIf='attribute.value == -1' src='../../../assets/icons/up.png'>
+                        <img *ngIf='attribute.value == 1' src='../../../assets/icons/down.png'>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </mat-card>
+
+    </div>
+
+</div>

@@ -7,12 +7,14 @@ import { MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
 
 // holds all necessary modules
 const MATERIAL_MODULES = [
     MatToolbarModule, MatDividerModule,
     MatIconModule,  MatButtonModule,
-    MatMenuModule,  MatTableModule
+    MatMenuModule,  MatTableModule,
+    MatCardModule
 ];
 
 @NgModule({

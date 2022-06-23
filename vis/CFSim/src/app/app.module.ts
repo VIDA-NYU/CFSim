@@ -10,6 +10,9 @@ import { MaterialModule } from './material/material';
 import { DatasetOverviewComponent } from './components/dataset-overview/dataset-overview.component';
 import { ParameterSelectorComponent } from './components/parameter-selector/parameter-selector.component';
 import { CounterfactualListComponent } from './components/counterfactual-list/counterfactual-list.component';
+import { ActionGuideComponent } from './components/action-guide/action-guide.component';
+import { ClassificationOverviewComponent } from './components/classification-overview/classification-overview.component';
+import { CounterfactualInstanceComponent } from './components/counterfactual-instance/counterfactual-instance.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { CounterfactualListComponent } from './components/counterfactual-list/co
     ToolbarComponent,
     DatasetOverviewComponent,
     ParameterSelectorComponent,
-    CounterfactualListComponent
+    CounterfactualListComponent,
+    ActionGuideComponent,
+    ClassificationOverviewComponent,
+    CounterfactualInstanceComponent
   ],
   imports: [
     BrowserModule,
