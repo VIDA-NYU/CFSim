@@ -9,31 +9,9 @@
 
     <div class="body-wrapper">
         <div class="scrollable-container">
-
-            <app-counterfactual-instance></app-counterfactual-instance>
-            <app-counterfactual-instance></app-counterfactual-instance>
-            <app-counterfactual-instance></app-counterfactual-instance>
-            <app-counterfactual-instance></app-counterfactual-instance>
-            <app-counterfactual-instance></app-counterfactual-instance>
-            <app-counterfactual-instance></app-counterfactual-instance>
-            <app-counterfactual-instance></app-counterfactual-instance>
-            <app-counterfactual-instance></app-counterfactual-instance>
-            <app-counterfactual-instance></app-counterfactual-instance>
-            <app-counterfactual-instance></app-counterfactual-instance>
-            <app-counterfactual-instance></app-counterfactual-instance>
-            <app-counterfactual-instance></app-counterfactual-instance>
-            <app-counterfactual-instance></app-counterfactual-instance>
-            <app-counterfactual-instance></app-counterfactual-instance>
-            <app-counterfactual-instance></app-counterfactual-instance>
-            <app-counterfactual-instance></app-counterfactual-instance>
-            <app-counterfactual-instance></app-counterfactual-instance>
-            <app-counterfactual-instance></app-counterfactual-instance>
-            <app-counterfactual-instance></app-counterfactual-instance>
-            <app-counterfactual-instance></app-counterfactual-instance>
-          
-            
-            
-
+            <app-counterfactual-instance 
+                *ngFor='let cfexample of this.counterfactualsState.loadedCounterfactuals'>
+            </app-counterfactual-instance>
         </div>
     </div>
 

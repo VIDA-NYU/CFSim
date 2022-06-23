@@ -6,7 +6,7 @@
         </button>
 
         <mat-menu #loadDataMenu='matMenu'>
-            <button mat-menu-item>Load Data</button>
+            <button mat-menu-item (click)='this.toolbarController?.open_dialog("data-loader-dialog")'>Load Data</button>
         </mat-menu>
 
     </mat-toolbar>

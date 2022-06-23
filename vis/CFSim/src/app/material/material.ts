@@ -8,13 +8,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 // holds all necessary modules
 const MATERIAL_MODULES = [
-    MatToolbarModule, MatDividerModule,
-    MatIconModule,  MatButtonModule,
-    MatMenuModule,  MatTableModule,
-    MatCardModule
+    MatToolbarModule,   MatDividerModule,
+    MatIconModule,      MatButtonModule,
+    MatMenuModule,      MatTableModule,
+    MatCardModule,      MatDialogModule,
+    MatSelectModule
 ];
 
 @NgModule({

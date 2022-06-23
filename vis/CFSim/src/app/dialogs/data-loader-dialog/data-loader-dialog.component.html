@@ -1,0 +1,30 @@
+
+<div class="dialog-wrapper">
+
+    <div class="dialog-header-container">
+        <h2>Select the dataset</h2>
+    </div>
+
+    <div class="dialog-body-container">
+        <div class="dataset-selector-container">
+            <mat-form-field appearance="fill">
+                <mat-label>Dataset</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let dataset of datasets" [value]="dataset.id">
+                        {{dataset.displayName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="dialog-footer-container">
+
+        <button mat-stroked-button (click)='this.dataLoaderDialogController?.load_dataset("mock"); this.dialogRef.close()'>Load</button>
+        <button mat-stroked-button (click)='this.dialogRef.close()'>Cancel</button>
+
+    </div>
+        
+
+</div>
+

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CounterfactualsState } from 'src/app/state/counterfactuals.state';
 
 @Component({
   selector: 'app-counterfactual-list',
@@ -7,9 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CounterfactualListComponent implements OnInit {
 
-  constructor() { }
+  constructor( public counterfactualsState: CounterfactualsState ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

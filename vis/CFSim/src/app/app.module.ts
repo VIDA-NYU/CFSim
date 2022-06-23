@@ -13,6 +13,7 @@ import { CounterfactualListComponent } from './components/counterfactual-list/co
 import { ActionGuideComponent } from './components/action-guide/action-guide.component';
 import { ClassificationOverviewComponent } from './components/classification-overview/classification-overview.component';
 import { CounterfactualInstanceComponent } from './components/counterfactual-instance/counterfactual-instance.component';
+import { DataLoaderDialogComponent } from './dialogs/data-loader-dialog/data-loader-dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CounterfactualInstanceComponent } from './components/counterfactual-ins
     CounterfactualListComponent,
     ActionGuideComponent,
     ClassificationOverviewComponent,
-    CounterfactualInstanceComponent
+    CounterfactualInstanceComponent,
+    DataLoaderDialogComponent
   ],
   imports: [
     BrowserModule,

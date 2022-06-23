@@ -9,7 +9,7 @@
         <div class="left-sidebar-wrapper sidebar-wrapper">
 
             <div class="dataset-overview-wrapper">
-                <app-dataset-overview></app-dataset-overview>
+                <app-dataset-overview (onrowclicked)='this.mainViewController?.dataset_row_clicked()'></app-dataset-overview>
             </div>
 
             <mat-divider></mat-divider>
@@ -30,11 +30,7 @@
 
         <div class="right-sidebar-wrapper sidebar-wrapper">
 
-            <div class="action-guide-wrapper">
-                
-            </div>
-
-
+            <div class="action-guide-wrapper"></div>
             <div class="classification-overview-wrapper"></div>
 
         </div>

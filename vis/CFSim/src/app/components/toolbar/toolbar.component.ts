@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogManager } from 'src/app/dialogs/dialog-manager';
+import { ToolbarController } from './controller/toolbar.controller';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() { }
+  // controller reference
+  public toolbarController: ToolbarController | null = null;
 
-  ngOnInit(): void {
+  constructor( public dialogManager: DialogManager ) { 
+
+    // controller instance
+    this.toolbarController = new ToolbarController( this.dialogManager );
+
   }
+
+  ngOnInit(): void {}
 
 }
