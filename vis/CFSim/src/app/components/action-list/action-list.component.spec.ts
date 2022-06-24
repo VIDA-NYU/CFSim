@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ActionGuideComponent } from './action-guide.component';
+import { ActionListComponent } from './action-list.component';
 
-describe('ActionGuideComponent', () => {
-  let component: ActionGuideComponent;
-  let fixture: ComponentFixture<ActionGuideComponent>;
+describe('ActionListComponent', () => {
+  let component: ActionListComponent;
+  let fixture: ComponentFixture<ActionListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ActionGuideComponent ]
+      declarations: [ ActionListComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ActionGuideComponent);
+    fixture = TestBed.createComponent(ActionListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

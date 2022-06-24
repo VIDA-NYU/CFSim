@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActionBuilderDialogComponent } from './action-builder-dialog/action-builder-dialog.component';
 import { DataLoaderDialogComponent } from './data-loader-dialog/data-loader-dialog.component';
 
 @Injectable({
@@ -17,6 +18,7 @@ export class DialogManager {
         switch( dialogName ){
 
             case 'data-loader-dialog': this.open_data_loader_dialog(); break;
+            case 'action-builder-dialog': this.open_action_builder_dialog(); break;
         }
 
     }
@@ -26,6 +28,16 @@ export class DialogManager {
     private open_data_loader_dialog( params?: any ): void {
 
         this.dialog.open( DataLoaderDialogComponent, {
+            panelClass: 'custom-dialog-container',
+            width: '800px',
+            height: '300px'
+        });
+
+    }
+
+    private open_action_builder_dialog( params?: any ): void {
+
+        this.dialog.open( ActionBuilderDialogComponent, {
             panelClass: 'custom-dialog-container',
             width: '800px',
             height: '300px'

@@ -10,10 +10,12 @@ import { MaterialModule } from './material/material';
 import { DatasetOverviewComponent } from './components/dataset-overview/dataset-overview.component';
 import { ParameterSelectorComponent } from './components/parameter-selector/parameter-selector.component';
 import { CounterfactualListComponent } from './components/counterfactual-list/counterfactual-list.component';
-import { ActionGuideComponent } from './components/action-guide/action-guide.component';
 import { ClassificationOverviewComponent } from './components/classification-overview/classification-overview.component';
 import { CounterfactualInstanceComponent } from './components/counterfactual-instance/counterfactual-instance.component';
 import { DataLoaderDialogComponent } from './dialogs/data-loader-dialog/data-loader-dialog.component';
+import { ActionListComponent } from './components/action-list/action-list.component';
+import { ActionInstanceComponent } from './components/action-instance/action-instance.component';
+import { ActionBuilderDialogComponent } from './dialogs/action-builder-dialog/action-builder-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,10 +25,12 @@ import { DataLoaderDialogComponent } from './dialogs/data-loader-dialog/data-loa
     DatasetOverviewComponent,
     ParameterSelectorComponent,
     CounterfactualListComponent,
-    ActionGuideComponent,
     ClassificationOverviewComponent,
     CounterfactualInstanceComponent,
-    DataLoaderDialogComponent
+    DataLoaderDialogComponent,
+    ActionListComponent,
+    ActionInstanceComponent,
+    ActionBuilderDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -6,11 +6,60 @@
         </div>
     </div>
 
-
     <div class="body-wrapper">
 
-                  
-    </div>
+        <div class="parameters-wrapper">
 
+            <div class="parameters-container">
+
+                <div class="parameter-row">
+                    
+                    <div class="parameter-row-header">
+                        <h2>Model</h2>
+                    </div>
+
+                    <div class="parameter-row-body">
+                        <div class="parameter-selector-container">
+
+                            <mat-form-field appearance="fill">
+                                <mat-label>Model</mat-label>
+                                <mat-select>
+                                    <mat-option *ngFor="let attribute of attributes" [value]="attribute.id">
+                                        {{attribute.displayName}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="parameter-row">
+
+                    <div class="parameter-row-header">
+                        <h2>Criteria</h2>
+                    </div>
+
+                    <div class="parameter-row-body">
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Criteria</mat-label>
+                            <mat-select>
+                                <mat-option *ngFor="let attribute of attributes" [value]="attribute.id">
+                                    {{attribute.displayName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+                    
+                </div>
+
+            </div>
+
+        </div>
+        
+    </div>
 
 </div>

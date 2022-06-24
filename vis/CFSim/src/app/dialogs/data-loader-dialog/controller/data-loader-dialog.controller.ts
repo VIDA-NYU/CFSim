@@ -1,4 +1,3 @@
-import { EventEmitter } from "@angular/core";
 import { DataState } from "src/app/state/data.state";
 
 export class DataLoaderDialogController {
