@@ -24,8 +24,8 @@
                             <mat-form-field appearance="fill">
                                 <mat-label>Model</mat-label>
                                 <mat-select>
-                                    <mat-option *ngFor="let attribute of attributes" [value]="attribute.id">
-                                        {{attribute.displayName}}
+                                    <mat-option *ngFor="let model of models" [value]="model.id">
+                                        {{model.displayName}}
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
@@ -46,8 +46,8 @@
                         <mat-form-field appearance="fill">
                             <mat-label>Criteria</mat-label>
                             <mat-select>
-                                <mat-option *ngFor="let attribute of attributes" [value]="attribute.id">
-                                    {{attribute.displayName}}
+                                <mat-option *ngFor="let criteria of criterias" [value]="criteria.id">
+                                    {{criteria.displayName}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
