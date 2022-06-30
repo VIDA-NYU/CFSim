@@ -17,19 +17,18 @@ export class DataLoaderDialogComponent implements OnInit {
   @Output('onrowclicked') onrowclicked: EventEmitter<{row: any}> = new EventEmitter<{row: any}>();
 
 
-  // mock data
-  public datasets: any = [
-    {id: 'Iris Dataset', displayName: 'Iris Dataset'},
-    {id: 'Wine Dataset', displayName: 'Wine Dataset'}
-  ];
-
   constructor( public dialogRef: MatDialogRef<DataLoaderDialogComponent>, public dataState: DataState ) {
 
     this.dataLoaderDialogController = new DataLoaderDialogController( this.dataState );
 
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+    // initializing controller data
+    this.dataLoaderDialogController?.initialize_data();
+
+  }
 
   
 

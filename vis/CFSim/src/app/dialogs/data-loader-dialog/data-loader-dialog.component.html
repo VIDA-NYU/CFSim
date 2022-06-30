@@ -10,8 +10,8 @@
             <mat-form-field appearance="fill">
                 <mat-label>Dataset</mat-label>
                 <mat-select>
-                    <mat-option *ngFor="let dataset of datasets" [value]="dataset.id">
-                        {{dataset.displayName}}
+                    <mat-option *ngFor="let dataset of this.dataLoaderDialogController?.availableDatasets" [value]="dataset">
+                        {{dataset}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
