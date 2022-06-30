@@ -13,14 +13,14 @@ engine = None
 def load_dataset():
 
     ## reading parameters
-    requestParams = request.get_json()
+    params = request.args
 
-    return engine.load_dataset()
+    return engine.load_dataset(params)
 
 @app.route('/getavailabledatasets', methods=['GET'])
 def get_available_datasets():
-    return engine.get_available_datasets()
 
+    return engine.get_available_datasets(  )
 
 if __name__ == '__main__':
 

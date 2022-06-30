@@ -3,12 +3,14 @@ import pandas as pd
 import glob
 import os
 
+# local imports
+from datasource.csvloader import CSVLoader
+
 class DatasetLoader:
 
     @staticmethod
     def load_dataset( datasetName: str ):
-        return {'features': ['attr1', 'attr2', 'attr3', 'attr4', 'attr5'], 'rows': [[0, 1, 1, 2, 3], [0, 1, 1, 2, 3], [0, 1, 1, 2, 3], [0, 1, 1, 2, 3], [0, 1, 1, 2, 3], [0, 1, 1, 2, 3], [0, 1, 1, 2, 3]], 'predictions': [ 0, 1, 0, 0, 0, 1 ,1] }
-        
+        return CSVLoader.load_csv( datasetName )
 
     @staticmethod
     def get_available_datasets():

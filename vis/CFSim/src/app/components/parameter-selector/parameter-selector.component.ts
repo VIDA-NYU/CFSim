@@ -17,8 +17,6 @@ export class ParameterSelectorComponent implements OnInit {
     {id: 'sparsity', displayName: 'sparsity'},
   ];
 
-
-
   constructor() { }
 
   ngOnInit(): void {

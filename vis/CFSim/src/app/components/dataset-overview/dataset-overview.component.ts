@@ -1,14 +1,13 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+// angular imports
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Sort } from '@angular/material/sort';
+
+// state imports
 import { DataState } from 'src/app/state/data.state';
+
+// local imports
 import { DatasetOverviewController } from './controller/dataset-overview.controller';
 
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
 
 @Component({
   selector: 'app-dataset-overview',
@@ -21,7 +20,7 @@ export class DatasetOverviewComponent implements OnInit {
   public datasetOverviewController: DatasetOverviewController | null = null;
 
   // events
-  @Output('onrowclicked') onrowclicked: EventEmitter<{row: any}> = new EventEmitter<{row: any}>();
+  @Output('onrowclicked') onrowclicked: EventEmitter<any> = new EventEmitter<any>();
 
   constructor( public dataState: DataState ) {
 
@@ -31,10 +30,14 @@ export class DatasetOverviewComponent implements OnInit {
     }
 
     // creating controller
-    this.datasetOverviewController = new DatasetOverviewController( events );
+    this.datasetOverviewController = new DatasetOverviewController( this.dataState, events );
 
   }
 
   ngOnInit(): void {}
+
+  sort_overview_table(sort: Sort){
+    if(sort.direction) this.dataState.loadedDataset.sort_rows( sort.active, sort.direction == 'asc' );
+  }
 
 }

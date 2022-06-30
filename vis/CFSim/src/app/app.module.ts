@@ -16,6 +16,7 @@ import { DataLoaderDialogComponent } from './dialogs/data-loader-dialog/data-loa
 import { ActionListComponent } from './components/action-list/action-list.component';
 import { ActionInstanceComponent } from './components/action-instance/action-instance.component';
 import { ActionBuilderDialogComponent } from './dialogs/action-builder-dialog/action-builder-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ActionBuilderDialogComponent } from './dialogs/action-builder-dialog/ac
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

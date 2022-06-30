@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { DataAPI } from "../api/data.api";
+import { Dataset } from "../model/dataset.model";
+import { Deserializer } from "../serialization/deserializer";
 
 @Injectable({
     providedIn: 'root'
@@ -8,9 +10,8 @@ import { DataAPI } from "../api/data.api";
 
 export class DataState {
 
-    public loadedData: any = [];
-    public displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-
+    // currently loaded dataset
+    public loadedDataset: Dataset = new Dataset([], [], []);
 
     public async load_available_datasets(): Promise<string[]> {
 
@@ -19,10 +20,10 @@ export class DataState {
 
     }
 
+    public async load_dataset( datasetName: string ): Promise<void> {
 
-    public load_dataset( datasetName: string ): void {
-
-        
+        const response: any = await DataAPI.get_dataset( datasetName );
+        this.loadedDataset = Deserializer.dataapi_get_dataset_deserializer( response );
     
     }
 

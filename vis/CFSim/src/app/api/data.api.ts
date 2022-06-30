@@ -17,4 +17,21 @@ export class DataAPI {
 
     }
 
+
+    public static async get_dataset( datasetName: string ): Promise<any> {
+
+        // url
+        const url = `${environment.dataserver}/loaddataset?datasetname=${datasetName}`;
+        
+
+        // header
+        const headers = {
+            'Content-Type': 'application/json',
+        };
+
+        const response = await fetch(url);
+        return await response.json();
+
+    }
+
 }
