@@ -1,11 +1,14 @@
 # data
 data/
-
+models/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Jupyter Stuff
+.ipynb_checkpoints
 
 # C extensions
 *.so
