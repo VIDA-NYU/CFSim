@@ -40,7 +40,7 @@ export class DialogManager {
         this.dialog.open( ActionBuilderDialogComponent, {
             panelClass: 'custom-dialog-container',
             width: '800px',
-            height: '300px'
+            height: '400px'
         });
 
     }

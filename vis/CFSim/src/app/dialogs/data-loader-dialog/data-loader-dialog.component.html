@@ -12,13 +12,11 @@
             <div class="dataset-selector-container">
                 <mat-form-field appearance="fill">
                     <mat-label>Dataset</mat-label>
-                    <mat-form-field>
-                        <mat-select formControlName='datasetname'>
-                            <mat-option *ngFor="let dataset of this.dataLoaderDialogController?.availableDatasets" [value]="dataset">
-                                {{ dataset }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                    <mat-select formControlName='datasetname'>
+                        <mat-option *ngFor="let dataset of this.dataLoaderDialogController?.availableDatasets" [value]="dataset">
+                            {{ dataset }}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
             </div>
         </div>

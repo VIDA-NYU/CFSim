@@ -6,18 +6,9 @@
             <div class="card-content">
 
                 <div 
-                    *ngFor='let attribute of counterfactual.perturbations | keyvalue' 
-                    class="perturbation-container">
-
-                    <div class="perturbation-header">
-                        <p><b>{{ attribute.key }}</b></p>
-                    </div>
-
-                    <div class="perturbation-body">
-                        <img *ngIf='attribute.value == -1' src='../../../assets/icons/up.png'>
-                        <img *ngIf='attribute.value == 1' src='../../../assets/icons/down.png'>
-                    </div>
-                    
+                    *ngFor='let featureInstance of this.counterfactualInstance.featureInstances' 
+                    class="feature-instance-container">
+                    <app-counterfactual-feature-instance [featureinstance]='featureInstance'></app-counterfactual-feature-instance>
                 </div>
                 
             </div>

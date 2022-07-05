@@ -22,14 +22,11 @@ class CounterfactualPredictor:
             self.loadedCounterfactualModel = self._load_counterfactual_model()
 
         ## formatting query input
-        queryInput = pd.read_json(json.dumps(queryinstance), orient ='records')
+        queryInput = pd.read_json(json.dumps( [queryinstance] ), orient ='records')
         
-        print('aaaa: ', queryInput)
-
         ## generating cfs
         cfs = self.loadedCounterfactualModel.get_counterfactuals(queryInput)
         cfs = json.loads(cfs.to_json())
-
         
         return {'counterfactuals': self._parse_conterfactuals( cfs )}
 
@@ -52,7 +49,6 @@ class CounterfactualPredictor:
                     newValue=cf[featureIndex] )
 
                 currentCounterfactualInstance.append( currentCF )
-                print(currentCounterfactualInstance)
 
             parsedCounterfactuals.append(currentCounterfactualInstance)
 

@@ -1,4 +1,9 @@
 import { Injectable } from "@angular/core";
+import { MLAPI } from "../api/ml.api";
+
+// models
+import { CounterfactualInstance } from "../model/counterfactual-instance.model";
+import { Deserializer } from "../serialization/deserializer";
 
 @Injectable({
     providedIn: 'root'
@@ -6,12 +11,14 @@ import { Injectable } from "@angular/core";
 
 export class CounterfactualsState {
 
-    public loadedCounterfactuals: any[] = [];
+    public loadedCounterfactuals: CounterfactualInstance[] = [];
 
 
-    public load_counterfactual_examples(): void {
-
-        this.loadedCounterfactuals = [1,2,3,4,5,6,7];
+    public async load_counterfactual_examples( queryInstance: {queryinstance: any} ): Promise<void> {
+    
+        const response: {counterfactuals: any} = await MLAPI.get_counterfactual_set( queryInstance );
+        const parsedCounterfactuals: CounterfactualInstance[] = Deserializer.mlapi_get_counterfactual_set(response.counterfactuals);
+        this.loadedCounterfactuals = parsedCounterfactuals;
 
     }
 

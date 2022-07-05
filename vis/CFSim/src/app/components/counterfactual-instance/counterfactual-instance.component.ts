@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Counterfactual } from 'src/app/model/counterfactual.model';
+// angular
+import { Component, Input, OnInit } from '@angular/core';
+
+// model
+import { CounterfactualInstance } from 'src/app/model/counterfactual-instance.model';
 
 @Component({
   selector: 'app-counterfactual-instance',
@@ -8,8 +11,7 @@ import { Counterfactual } from 'src/app/model/counterfactual.model';
 })
 export class CounterfactualInstanceComponent implements OnInit {
 
-  // mock data
-  public counterfactual: Counterfactual = new Counterfactual();
+  @Input('counterfactualinstance') counterfactualInstance!: CounterfactualInstance;
 
   constructor() { }
 

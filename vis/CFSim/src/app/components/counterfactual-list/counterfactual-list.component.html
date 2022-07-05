@@ -9,7 +9,8 @@
     <div class="body-wrapper">
         <div class="scrollable-container">
             <app-counterfactual-instance 
-                *ngFor='let cfexample of this.counterfactualsState.loadedCounterfactuals'>
+                *ngFor='let cfinstance of this.counterfactualsState.loadedCounterfactuals'
+                [counterfactualinstance]='cfinstance'>
             </app-counterfactual-instance>
         </div>
     </div>

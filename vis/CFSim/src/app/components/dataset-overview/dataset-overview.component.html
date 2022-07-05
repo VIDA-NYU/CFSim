@@ -21,7 +21,7 @@
                     </ng-container>
                   
                     <tr mat-header-row *matHeaderRowDef='this.dataState.loadedDataset.features; sticky: true' ></tr>
-                    <tr mat-row (click)='this.onrowclicked.emit({"selectedrow": row})' *matRowDef="let row; columns: this.dataState.loadedDataset.features;"></tr>
+                    <tr mat-row (click)='this.onrowclicked.emit({"queryinstance": row})' *matRowDef="let row; columns: this.dataState.loadedDataset.features;"></tr>
     
                 </table>
 

@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   dataserver: 'http://localhost:5000',
+  mlserver: 'http://localhost:5001'
 };
 
 /*

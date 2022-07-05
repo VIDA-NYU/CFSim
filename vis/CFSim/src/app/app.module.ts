@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,6 +16,7 @@ import { ActionListComponent } from './components/action-list/action-list.compon
 import { ActionInstanceComponent } from './components/action-instance/action-instance.component';
 import { ActionBuilderDialogComponent } from './dialogs/action-builder-dialog/action-builder-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CounterfactualFeatureInstanceComponent } from './components/counterfactual-feature-instance/counterfactual-feature-instance.component';
 
 @NgModule({
   declarations: [
@@ -31,14 +31,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     DataLoaderDialogComponent,
     ActionListComponent,
     ActionInstanceComponent,
-    ActionBuilderDialogComponent
+    ActionBuilderDialogComponent,
+    CounterfactualFeatureInstanceComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

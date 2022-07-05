@@ -36,6 +36,8 @@ export class DatasetOverviewComponent implements OnInit {
 
   ngOnInit(): void {}
 
+
+  // TODO: Remove it from here
   sort_overview_table(sort: Sort){
     if(sort.direction) this.dataState.loadedDataset.sort_rows( sort.active, sort.direction == 'asc' );
   }

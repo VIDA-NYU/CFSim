@@ -6,6 +6,30 @@
     </div>
 
     <div class="dialog-body-container">
+
+
+        <div class="parameters-selector-list-container">
+
+            <div class="feature-selector-container parameter-selector-container">
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Feature</mat-label>
+                    <mat-select formControlName='featureName'>
+                        <mat-option *ngFor="let feature of this.dataState.loadedDataset.features" [value]="feature">
+                            {{ feature }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+    
+            <div class="range-selector-container parameter-selector-container">
+
+                <mat-slider aria-label="unit(s)"></mat-slider>
+                
+            </div>
+
+        </div>
         
     </div>
 
