@@ -10,10 +10,10 @@ export class ActionsState {
 
     public created_actions: Action[] = [];
 
-    public add_action(): void {
+    public add_action( action: {'featurename': string, 'featurefloor': number, 'featureceil': number } ): void {
 
-        const action: Action = new Action( 'attr1', 22.4, 78.4 );
-        this.created_actions.push(action);
+        const currentAction: Action = new Action( action.featurename, 0, action.featureceil );
+        this.created_actions.push( currentAction );
 
     }
 }

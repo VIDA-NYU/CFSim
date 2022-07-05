@@ -2,6 +2,9 @@ export class Dataset {
 
     constructor( public features: string[], public rows: any[], public predictions: number[] ){}
 
+    public is_loaded(): boolean{
+        return this.features.length !== 0;
+    }
 
     public sort_rows( featureName: string, ascending: boolean ): void {
 
@@ -12,9 +15,6 @@ export class Dataset {
 
         // creating a new copy
         this.rows = this.rows.slice();
-
-        
-
         
     }
 

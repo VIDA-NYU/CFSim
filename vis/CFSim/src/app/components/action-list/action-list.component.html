@@ -12,13 +12,17 @@
             
             <div class="action-list-container">
                 <div class="scrollable-container">
-                    <app-action-instance *ngFor='let action of this.actionsState.created_actions'></app-action-instance>
+                    <app-action-instance 
+                        *ngFor='let action of this.actionsState.created_actions'
+                        [actioninstance]='action'>
+                    </app-action-instance>
                 </div>
             </div>
 
             <div class="action-buttons-container">
 
                 <button 
+                    [disabled]='!this.datasetLoaded'
                     mat-fab color="primary"
                     (click)='this.dialogManager.open_dialog("action-builder-dialog")'>
                     <mat-icon>add</mat-icon>

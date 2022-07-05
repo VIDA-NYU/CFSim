@@ -11,4 +11,14 @@ export class CustomFormBuilder {
         })
 
     }
+
+    public static create_action_builder_form( formBuilder: FormBuilder ): FormGroup<any>{
+
+        return formBuilder.group({
+            'featurename': '',
+            'feturefloor': 0,
+            'featureceil': 0
+        })
+
+    }
 }

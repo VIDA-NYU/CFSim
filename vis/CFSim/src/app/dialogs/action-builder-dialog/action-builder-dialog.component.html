@@ -5,40 +5,38 @@
         <h2>Apply change</h2>
     </div>
 
-    <div class="dialog-body-container">
+    <form [formGroup]='this.actionBuilderForm' (ngSubmit)='this.actionBuilderDialogController?.add_action();'> 
 
+        <div class="dialog-body-container">
+            <div class="parameters-selector-list-container">
 
-        <div class="parameters-selector-list-container">
+                <div class="parameter-selector-container">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Feature</mat-label>
+                        <mat-select formControlName='featurename'>
+                            <mat-option *ngFor="let feature of this.dataState.loadedDataset.features" [value]="feature">
+                                {{ feature }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
 
-            <div class="feature-selector-container parameter-selector-container">
-
-                <mat-form-field appearance="fill">
-                    <mat-label>Feature</mat-label>
-                    <mat-select formControlName='featureName'>
-                        <mat-option *ngFor="let feature of this.dataState.loadedDataset.features" [value]="feature">
-                            {{ feature }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+                <div class="parameter-selector-container">
+                    <mat-slider formControlName='featureceil'></mat-slider>
+                </div>
 
             </div>
+        </div>
+
     
-            <div class="range-selector-container parameter-selector-container">
 
-                <mat-slider aria-label="unit(s)"></mat-slider>
-                
-            </div>
+        <div class="dialog-footer-container">
+
+            <button mat-stroked-button type='submit' (click)='this.dialogRef.close()'>Apply</button>
+            <button mat-stroked-button (click)='this.dialogRef.close()'>Cancel</button>
 
         </div>
-        
-    </div>
-
-    <div class="dialog-footer-container">
-
-        <button mat-stroked-button (click)='this.actionBuilderDialogController?.add_action(); this.dialogRef.close()'>Apply</button>
-        <button mat-stroked-button (click)='this.dialogRef.close()'>Cancel</button>
-
-    </div>
-        
+    
+    </form>
 
 </div>

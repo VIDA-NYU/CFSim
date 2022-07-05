@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Action } from 'src/app/model/action.model';
 
 @Component({
   selector: 'app-action-instance',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActionInstanceComponent implements OnInit {
 
+  @Input('actioninstance') actionInstance!: Action;
+
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

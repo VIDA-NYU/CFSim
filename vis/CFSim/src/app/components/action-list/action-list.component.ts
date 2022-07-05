@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DialogManager } from 'src/app/dialogs/dialog-manager';
 import { ActionsState } from 'src/app/state/actions.state';
 import { ActionListController } from './controller/action-list.controller';
@@ -9,6 +9,9 @@ import { ActionListController } from './controller/action-list.controller';
   styleUrls: ['./action-list.component.scss']
 })
 export class ActionListComponent implements OnInit {
+
+  // input variables
+  @Input('datasetloaded') datasetLoaded: boolean = false;
 
   // controller
   public actionListController: ActionListController | null = null;

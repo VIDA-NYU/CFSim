@@ -63,3 +63,10 @@ button {
     height: 100%;
 
 }
+
+form {
+
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}

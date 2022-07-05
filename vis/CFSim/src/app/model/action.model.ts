@@ -1,5 +1,5 @@
 export class Action {
 
-    constructor( attributeName: string, previousValue: number, currentValue: number ) {}
+    constructor( public featureName: string, public featureFloor: number, public featureCeil: number ) {}
 
 }
