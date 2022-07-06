@@ -13,6 +13,13 @@
 
 }
 
+form {
+
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
 .parameters-container{
 
     display: flex;
@@ -43,6 +50,7 @@
 .parameter-row-body{
 
     display: flex;
+    flex-direction: column;
     flex: 1;
 
 }

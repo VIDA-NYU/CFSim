@@ -2,6 +2,7 @@ import pandas as pd
 
 # local imports
 from config.constants import PATHCONSTS
+from utils.histograms import HistogramGenerator
 
 class CSVLoader:
 
@@ -14,4 +15,6 @@ class CSVLoader:
         ## opening with pandas
         df = pd.read_csv(currentDatasetPath)
 
-        return {'features': df.columns.values, 'rows': df.values, 'predictions': [ 0, 1, 0, 0, 0, 1 ,1] }
+        histograms = HistogramGenerator.create_histogram( df )
+
+        return {'features': df.columns.values, 'rows': df.values, 'predictions': [ 0, 1, 0, 0, 0, 1 ,1], 'histograms': histograms }

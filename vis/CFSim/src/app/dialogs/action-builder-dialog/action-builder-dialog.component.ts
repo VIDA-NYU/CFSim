@@ -22,10 +22,11 @@ export class ActionBuilderDialogComponent implements OnInit {
 
   constructor( 
     public dialogRef: MatDialogRef<ActionBuilderDialogComponent>, 
-    public actionState: ActionsState, public dataState: DataState,
+    public actionState: ActionsState, 
+    public dataState: DataState,
     public formBuilder: FormBuilder ) {
 
-    this.actionBuilderDialogController = new ActionBuilderDialogController( actionState );
+    this.actionBuilderDialogController = new ActionBuilderDialogController( actionState, dataState );
 
   }
 

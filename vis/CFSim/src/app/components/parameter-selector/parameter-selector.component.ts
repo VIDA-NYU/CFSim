@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ParametersState } from 'src/app/state/parameters.state';
+import { CustomFormBuilder } from 'src/app/utils/formbuilder.custom';
+import { ParameterSelectorController } from './controller/parameter-selector.controller';
 
 @Component({
   selector: 'app-parameter-selector',
@@ -7,19 +11,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ParameterSelectorComponent implements OnInit {
 
-  // mock data
-  public models: any = [
-    {id: 'dice', displayName: 'DICE'},
-  ];
+  // controller reference
+  public parameterSelectorController: ParameterSelectorController | null = null;
 
-  public criterias: any = [
-    {id: 'actionability', displayName: 'actionability'},
-    {id: 'sparsity', displayName: 'sparsity'},
-  ];
+  // forms
+  public parametersForm: FormGroup<any> = new FormGroup({});
 
-  constructor() { }
+  constructor( public formBuilder: FormBuilder, public parameterState: ParametersState ){
+
+    this.parameterSelectorController = new ParameterSelectorController( this.parameterState );
+
+  }
 
   ngOnInit(): void {
+
+    // creating forms
+    this.parametersForm = CustomFormBuilder.create_parameters_selector_form( this.formBuilder );
+    const forms: { [ formName: string ]: FormGroup<any> } = { 'parametersForm': this.parametersForm };
+
+    // initializing controller
+    this.parameterSelectorController?.initialize_controller( forms );
+
   }
 
 }

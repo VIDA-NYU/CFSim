@@ -1,14 +1,19 @@
 // models
 import  { CounterfactualFeatureInstance } from '../model/counterfactual-feature-instance.model';
 import { CounterfactualInstance } from '../model/counterfactual-instance.model';
-
 import { Dataset } from "../model/dataset.model";
+import { HistogramData } from '../model/types';
+
 
 export class Deserializer {
 
     public static dataapi_get_dataset_deserializer( requestobj: any ): Dataset {
 
+
+        // parsing features
+        const histograms: { [featureName: string]: HistogramData[] } = requestobj.histograms;
         const features: string[] = requestobj.features;
+        const predictions: number [] = requestobj.predictions;
         const body: any[] = requestobj.rows.map( (element: any, index: number) => {
             
             const row: any = {};
@@ -20,9 +25,8 @@ export class Deserializer {
             return row;
         });
 
-        const predictions: number [] = requestobj.predictions;
-        
-        return new Dataset( features, body, predictions);
+        // creating object
+        return new Dataset( features, body, predictions, histograms );
     }
 
     public static mlapi_get_counterfactual_set( requestobj: any[] ): CounterfactualInstance[] {

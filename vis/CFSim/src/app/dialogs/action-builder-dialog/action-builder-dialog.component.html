@@ -10,10 +10,10 @@
         <div class="dialog-body-container">
             <div class="parameters-selector-list-container">
 
-                <div class="parameter-selector-container">
+                <div class="parameter-selector-container small-container">
                     <mat-form-field appearance="fill">
                         <mat-label>Feature</mat-label>
-                        <mat-select formControlName='featurename'>
+                        <mat-select formControlName='featurename' (selectionChange)='this.actionBuilderDialogController?.update_histogram_data($event)'>
                             <mat-option *ngFor="let feature of this.dataState.loadedDataset.features" [value]="feature">
                                 {{ feature }}
                             </mat-option>
@@ -21,8 +21,11 @@
                     </mat-form-field>
                 </div>
 
-                <div class="parameter-selector-container">
-                    <mat-slider formControlName='featureceil'></mat-slider>
+                <div class="parameter-selector-container large-container">
+                    <app-selector-histogram
+                        [title]='this.actionBuilderDialogController?.histTitle'
+                        [histdata]='this.actionBuilderDialogController?.histData'>
+                    </app-selector-histogram>
                 </div>
 
             </div>
@@ -31,10 +34,8 @@
     
 
         <div class="dialog-footer-container">
-
             <button mat-stroked-button type='submit' (click)='this.dialogRef.close()'>Apply</button>
             <button mat-stroked-button (click)='this.dialogRef.close()'>Cancel</button>
-
         </div>
     
     </form>

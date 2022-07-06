@@ -12,8 +12,21 @@
 .parameter-selector-container{
 
     display: flex;
-    flex: 1;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 
-}   
+}
+
+.small-container{
+
+    width: 100%;
+    height: 70px;
+}
+
+.large-container{
+
+    width: 100%;
+    height: 300px;
+
+}

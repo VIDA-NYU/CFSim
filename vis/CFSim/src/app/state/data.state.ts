@@ -11,7 +11,7 @@ import { Deserializer } from "../serialization/deserializer";
 export class DataState {
 
     // currently loaded dataset
-    public loadedDataset: Dataset = new Dataset([], [], []);
+    public loadedDataset: Dataset = new Dataset([], [], [], {});
 
     public async load_available_datasets(): Promise<string[]> {
 

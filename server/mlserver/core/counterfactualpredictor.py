@@ -15,8 +15,14 @@ class CounterfactualPredictor:
 
         self.loadedCounterfactualModel = None
    
-    def get_counterfactual_set( self, queryinstance ):
+    def get_counterfactual_set( self, queryinstance, parameters ):
 
+
+        ## parsing parameters
+        model = parameters['modelname']
+        sampleSize = parameters['samplesize']
+
+        print("SAMPLE SIZE: ", sampleSize)
 
         if( self.loadedCounterfactualModel == None ):
             self.loadedCounterfactualModel = self._load_counterfactual_model()
@@ -25,7 +31,7 @@ class CounterfactualPredictor:
         queryInput = pd.read_json(json.dumps( [queryinstance] ), orient ='records')
         
         ## generating cfs
-        cfs = self.loadedCounterfactualModel.get_counterfactuals(queryInput)
+        cfs = self.loadedCounterfactualModel.get_counterfactuals(queryInput=queryInput, samplesize=sampleSize)
         cfs = json.loads(cfs.to_json())
         
         return {'counterfactuals': self._parse_conterfactuals( cfs )}

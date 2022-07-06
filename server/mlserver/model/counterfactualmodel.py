@@ -6,5 +6,5 @@ class CounterfactualModel:
         self.model = model
 
 
-    def get_counterfactuals(self, queryInput):
-        return self.model.generate_counterfactuals(queryInput, total_CFs=20, desired_class="opposite")
+    def get_counterfactuals(self, queryInput, samplesize=10):
+        return self.model.generate_counterfactuals(queryInput, total_CFs=samplesize, desired_class="opposite")

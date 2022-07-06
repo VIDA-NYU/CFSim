@@ -2,13 +2,13 @@ import { environment } from 'src/environments/environment';
 
 export class MLAPI {
 
-    public static async get_counterfactual_set( queryInstance: any ): Promise< {counterfactuals: any} > {
+    public static async get_counterfactual_set( queryInstance: any, parameters: any ): Promise< {counterfactuals: any} > {
 
         // url
         const url = `${environment.mlserver}/generatecounterfactualset`;
 
         // post parameters
-        const requestParams = queryInstance;
+        const requestParams = { 'queryinstance': queryInstance, parameters } ;
 
         // post header
         const headers = {

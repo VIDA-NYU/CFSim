@@ -21,4 +21,13 @@ export class CustomFormBuilder {
         })
 
     }
+
+    public static create_parameters_selector_form( formBuilder: FormBuilder ): FormGroup<any>{
+
+        return formBuilder.group({
+            'samplesize': 10,
+            'modelname': 'DICE'
+        })
+
+    }
 }

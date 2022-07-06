@@ -14,9 +14,9 @@ export class CounterfactualsState {
     public loadedCounterfactuals: CounterfactualInstance[] = [];
 
 
-    public async load_counterfactual_examples( queryInstance: {queryinstance: any} ): Promise<void> {
+    public async load_counterfactual_examples( queryInstance: any, parameters: {  ['samplesize']: number, ['modelname']: string } ): Promise<void> {
     
-        const response: {counterfactuals: any} = await MLAPI.get_counterfactual_set( queryInstance );
+        const response: {counterfactuals: any} = await MLAPI.get_counterfactual_set( queryInstance, parameters );
         const parsedCounterfactuals: CounterfactualInstance[] = Deserializer.mlapi_get_counterfactual_set(response.counterfactuals);
         this.loadedCounterfactuals = parsedCounterfactuals;
 

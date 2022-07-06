@@ -1,7 +1,18 @@
+import { HistogramData } from "./types";
+
 export class Dataset {
 
-    constructor( public features: string[], public rows: any[], public predictions: number[] ){}
+    constructor( 
+        public features: string[], 
+        public rows: any[], 
+        public predictions: number[],
+        private histograms: { [featureName: string]: HistogramData[]  } ){}
 
+
+    public get_feature_histogram( featureName: string ): HistogramData[] {
+        return this.histograms[featureName];
+    }
+    
     public is_loaded(): boolean{
         return this.features.length !== 0;
     }

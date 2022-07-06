@@ -17,6 +17,7 @@ import { ActionInstanceComponent } from './components/action-instance/action-ins
 import { ActionBuilderDialogComponent } from './dialogs/action-builder-dialog/action-builder-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CounterfactualFeatureInstanceComponent } from './components/counterfactual-feature-instance/counterfactual-feature-instance.component';
+import { SelectorHistogramComponent } from './components/charts/selector-histogram/selector-histogram.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CounterfactualFeatureInstanceComponent } from './components/counterfact
     ActionListComponent,
     ActionInstanceComponent,
     ActionBuilderDialogComponent,
-    CounterfactualFeatureInstanceComponent
+    CounterfactualFeatureInstanceComponent,
+    SelectorHistogramComponent
   ],
   imports: [
     BrowserModule,

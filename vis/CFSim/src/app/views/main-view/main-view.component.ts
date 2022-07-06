@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CounterfactualsState } from 'src/app/state/counterfactuals.state';
 import { DataState } from 'src/app/state/data.state';
+import { ParametersState } from 'src/app/state/parameters.state';
 import { MainViewController } from './controllers/main-view.controller';
 
 @Component({
@@ -14,9 +15,9 @@ export class MainViewComponent implements OnInit {
   // controllers
   public mainViewController: MainViewController | null = null;
 
-  constructor( public dataState: DataState, public counterfactualsState: CounterfactualsState ) { 
+  constructor( public dataState: DataState, public counterfactualsState: CounterfactualsState, public parametersState: ParametersState ) { 
 
-    this.mainViewController = new MainViewController( this.dataState, this.counterfactualsState );
+    this.mainViewController = new MainViewController( this.dataState, this.counterfactualsState, this.parametersState );
 
   }
 
