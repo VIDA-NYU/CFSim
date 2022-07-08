@@ -2,7 +2,7 @@
 <div class="dialog-wrapper">
 
     <div class="dialog-header-container">
-        <h2>Apply change</h2>
+        <h2>Create Constraint</h2>
     </div>
 
     <form [formGroup]='this.actionBuilderForm' (ngSubmit)='this.actionBuilderDialogController?.add_action();'> 
@@ -23,21 +23,33 @@
 
                 <div class="parameter-selector-container large-container">
                     <app-selector-histogram
+                        (onbrushend)='this.actionBuilderDialogController?.update_histogram_selection($event.selection);'
                         [title]='this.actionBuilderDialogController?.histTitle'
                         [histdata]='this.actionBuilderDialogController?.histData'>
                     </app-selector-histogram>
                 </div>
 
+                <div class="parameter-selector-container small-container">
+                   <div *ngIf='this.actionBuilderDialogController!.histCurrentSelection!.length > 0' class="info-container">
+                        <p>All counterfactuals will maintain this atttibute bettween </p>
+                        <p><b>{{ this.actionBuilderDialogController!.histCurrentSelection[0] }} </b></p>
+                        <p> and </p>
+                        <p><b>{{ this.actionBuilderDialogController!.histCurrentSelection[1] }} </b></p>
+                        
+                   </div>
+                </div>
+
             </div>
         </div>
 
-    
-
         <div class="dialog-footer-container">
             <button mat-stroked-button type='submit' (click)='this.dialogRef.close()'>Apply</button>
-            <button mat-stroked-button (click)='this.dialogRef.close()'>Cancel</button>
+            <button mat-stroked-button type='button' (click)='this.dialogRef.close()'>Cancel</button>
         </div>
     
     </form>
+
+
+
 
 </div>

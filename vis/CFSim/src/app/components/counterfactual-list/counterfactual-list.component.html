@@ -8,10 +8,35 @@
 
     <div class="body-wrapper">
         <div class="scrollable-container">
-            <app-counterfactual-instance 
+
+            <mat-accordion>
+                <mat-expansion-panel *ngFor='let cfinstance of this.counterfactualsState.loadedCounterfactuals' hideToggle>
+                  
+                    <mat-expansion-panel-header collapsedHeight='120px' expandedHeight='130px'>
+                    
+                        <mat-panel-title>
+                            <div class="counterfactual-instance-container">
+                                <app-counterfactual-instance 
+                                    [counterfactualinstance]='cfinstance'>
+                                </app-counterfactual-instance>
+                            </div>
+                        </mat-panel-title>
+                    
+                  </mat-expansion-panel-header>
+                  
+                  <div class="counterfactual-details-container">
+
+                  </div>
+
+                </mat-expansion-panel>
+            </mat-accordion>
+
+            <!-- <app-counterfactual-instance 
                 *ngFor='let cfinstance of this.counterfactualsState.loadedCounterfactuals'
                 [counterfactualinstance]='cfinstance'>
-            </app-counterfactual-instance>
+            </app-counterfactual-instance> -->
+
+
         </div>
     </div>
 

@@ -53,3 +53,19 @@ p {
 ::-webkit-scrollbar-thumb:hover {
     background-color: #a8bbbf;
 }
+
+::ng-deep .mat-slider.mat-accent .mat-slider-thumb-label-text {
+    color: white;
+}
+
+::ng-deep .mat-accent .mat-slider-thumb {
+    background-color: #656565 !important;
+}
+
+::ng-deep .mat-accent .mat-slider-thumb-label {
+    background-color: #4C4C4C !important;
+} 
+
+::ng-deep .mat-accent .mat-slider-track-fill {
+    background-color: #656565 !important;
+} 

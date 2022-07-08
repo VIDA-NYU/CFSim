@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { HistogramData } from 'src/app/model/types';
 import { SelectorHistogramController } from './controller/selector-histogram.controller';
 
@@ -19,13 +19,22 @@ export class SelectorHistogramComponent implements OnInit, OnChanges {
   @Input('title') title: string | undefined = '';
   @Input('histdata') histdata: HistogramData[] | undefined = []; 
 
+  // event emitters
+  @Output('onbrushend') onbrushend: EventEmitter<{'selection': number[]}> = new EventEmitter<{'selection': number[]}>();
+
   constructor() {
 
     this.selectorHistogramController = new SelectorHistogramController();
 
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+    // initializing controller
+    const customEvents: { [eventname: string]: EventEmitter<any> } = { 'onbrushend': this.onbrushend };
+    this.selectorHistogramController?.initialize_controller( customEvents );
+
+  }
 
   ngOnChanges( changes: SimpleChanges ): void {
 

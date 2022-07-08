@@ -6,7 +6,7 @@
         </div>
     </div>
 
-    <div class="body-wrapper">
+    <div class="flex-body-wrapper">
 
         <div class="action-list-wrapper">
             
@@ -14,7 +14,8 @@
                 <div class="scrollable-container">
                     <app-action-instance 
                         *ngFor='let action of this.actionsState.created_actions'
-                        [actioninstance]='action'>
+                        [actioninstance]='action'
+                        [histdata]='this.dataState.loadedDataset.get_feature_histogram(action.featureName)'>
                     </app-action-instance>
                 </div>
             </div>

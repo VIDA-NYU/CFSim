@@ -16,7 +16,7 @@ export class CustomFormBuilder {
 
         return formBuilder.group({
             'featurename': '',
-            'feturefloor': 0,
+            'featurefloor': 0,
             'featureceil': 0
         })
 

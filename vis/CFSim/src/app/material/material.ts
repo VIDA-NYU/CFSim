@@ -12,6 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 // holds all necessary modules
 const MATERIAL_MODULES = [
@@ -20,7 +21,7 @@ const MATERIAL_MODULES = [
     MatMenuModule,      MatTableModule,
     MatCardModule,      MatDialogModule,
     MatSelectModule,    MatSortModule,
-    MatSliderModule
+    MatSliderModule,    MatExpansionModule
     
 ];
 

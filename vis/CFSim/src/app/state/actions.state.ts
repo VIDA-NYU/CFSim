@@ -12,8 +12,8 @@ export class ActionsState {
 
     public add_action( action: {'featurename': string, 'featurefloor': number, 'featureceil': number } ): void {
 
-        const currentAction: Action = new Action( action.featurename, 0, action.featureceil );
+        const currentAction: Action = new Action( action.featurename, action.featurefloor, action.featureceil );
         this.created_actions.push( currentAction );
-
+    
     }
 }

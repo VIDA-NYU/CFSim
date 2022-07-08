@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DialogManager } from 'src/app/dialogs/dialog-manager';
 import { ActionsState } from 'src/app/state/actions.state';
+import { DataState } from 'src/app/state/data.state';
 import { ActionListController } from './controller/action-list.controller';
 
 @Component({
@@ -16,7 +17,7 @@ export class ActionListComponent implements OnInit {
   // controller
   public actionListController: ActionListController | null = null;
 
-  constructor( public dialogManager: DialogManager, public actionsState: ActionsState ) { 
+  constructor( public dialogManager: DialogManager, public actionsState: ActionsState, public dataState: DataState ) { 
 
     this.actionListController = new ActionListController();
 

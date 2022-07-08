@@ -2,6 +2,9 @@
 data/
 models/
 
+# mac-related
+.DS_STORE
+
 # vis-related
 node_modules
 package-lock.json

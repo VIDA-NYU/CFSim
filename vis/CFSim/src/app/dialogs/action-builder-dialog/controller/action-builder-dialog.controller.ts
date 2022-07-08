@@ -11,6 +11,7 @@ export class ActionBuilderDialogController {
     // current selector histogram
     public histTitle: string = '';
     public histData: HistogramData[] = [];
+    public histCurrentSelection: number[] = [];
 
     constructor( public actionsState: ActionsState, public dataState: DataState ){}
 
@@ -32,10 +33,23 @@ export class ActionBuilderDialogController {
         this.histData = hisData;
     }
 
-    public add_action(): void {
+    public update_histogram_selection( histSelection: number[] ): void {
 
-        this.actionsState.add_action(this.createdForms['actionBuilderForm'].value);
-    
+        // updating the selection
+        this.histCurrentSelection = histSelection;
+
+    }
+
+    public add_action(): void { 
+
+        // updating form
+        this.createdForms['actionBuilderForm'].setValue({
+            'featurename': this.histTitle,
+            'featurefloor': this.histCurrentSelection[0],
+            'featureceil': this.histCurrentSelection[1]});
+
+        // adding constraint
+        this.actionsState.add_action( this.createdForms['actionBuilderForm'].value );    
     }
 
 }

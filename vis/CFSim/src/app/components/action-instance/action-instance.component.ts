@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { Action } from 'src/app/model/action.model';
+import { HistogramData } from 'src/app/model/types';
 
 @Component({
   selector: 'app-action-instance',
@@ -9,6 +10,7 @@ import { Action } from 'src/app/model/action.model';
 export class ActionInstanceComponent implements OnInit {
 
   @Input('actioninstance') actionInstance!: Action;
+  @Input('histdata') histData!: HistogramData[];
 
   constructor() { }
 

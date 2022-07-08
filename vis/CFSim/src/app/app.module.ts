@@ -18,6 +18,7 @@ import { ActionBuilderDialogComponent } from './dialogs/action-builder-dialog/ac
 import { ReactiveFormsModule } from '@angular/forms';
 import { CounterfactualFeatureInstanceComponent } from './components/counterfactual-feature-instance/counterfactual-feature-instance.component';
 import { SelectorHistogramComponent } from './components/charts/selector-histogram/selector-histogram.component';
+import { StaticHistogramComponent } from './components/charts/static-histogram/static-histogram.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SelectorHistogramComponent } from './components/charts/selector-histogr
     ActionInstanceComponent,
     ActionBuilderDialogComponent,
     CounterfactualFeatureInstanceComponent,
-    SelectorHistogramComponent
+    SelectorHistogramComponent,
+    StaticHistogramComponent
   ],
   imports: [
     BrowserModule,

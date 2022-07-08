@@ -23,4 +23,16 @@ export class ChartUtils {
     public static create_linear_scale(domain: [any, any], range: [number, number]): d3.ScaleLinear<number, number> {
         return d3.scaleLinear().domain(domain).range(range);
     }
+
+    public static create_horizontal_brush( selection: d3.Selection<any,any,any,any>, margins: { top: number, bottom: number, left: number, right: number }, container: HTMLElement ): any {
+
+        // creating brush
+        const brush = d3.brushX()
+            .extent([ [0, 0], [container.clientWidth - margins.right - margins.left, container.clientHeight - margins.bottom - margins.top ] ]);
+        
+        // appending group
+        selection.append('g').attr('class', 'brush').style('z-index', 100).call(brush);
+
+        return brush;
+    }
 }

@@ -20,19 +20,10 @@
                 </div>
 
                 <div class="card-body-container">
-                    
-                    <div class="attribute-change-description">
-                        <h2>{{ this.actionInstance.featureFloor }}</h2>
-                    </div>
-
-                    <div class="icon-container">
-                        <img src='../../../assets/icons/right.png'>
-                    </div>
-
-                    <div class="attribute-change-description">
-                        <h2>{{ this.actionInstance.featureCeil }}</h2>
-                    </div>
-
+                    <app-static-histogram 
+                        [histdata]='this.histData'
+                        [actioninstance]='this.actionInstance'
+                        ></app-static-histogram>
                 </div>
                 
             </div>
