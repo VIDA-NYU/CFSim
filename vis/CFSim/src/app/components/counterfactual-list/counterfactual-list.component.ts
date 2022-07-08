@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CounterfactualsState } from 'src/app/state/counterfactuals.state';
 
 @Component({

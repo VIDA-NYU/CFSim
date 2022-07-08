@@ -12,8 +12,7 @@
             <mat-accordion>
                 <mat-expansion-panel *ngFor='let cfinstance of this.counterfactualsState.loadedCounterfactuals' hideToggle>
                   
-                    <mat-expansion-panel-header collapsedHeight='120px' expandedHeight='130px'>
-                    
+                    <mat-expansion-panel-header collapsedHeight='120px' expandedHeight='140px'>
                         <mat-panel-title>
                             <div class="counterfactual-instance-container">
                                 <app-counterfactual-instance 
@@ -21,21 +20,17 @@
                                 </app-counterfactual-instance>
                             </div>
                         </mat-panel-title>
-                    
-                  </mat-expansion-panel-header>
+                    </mat-expansion-panel-header>
                   
-                  <div class="counterfactual-details-container">
-
-                  </div>
+                    <div class="counterfactual-details-container">
+                        <app-counterfactual-details 
+                            [cffeatureinstances]='cfinstance.get_changing_features()'
+                            [featureHistograms]='this.counterfactualsState.get_features_histograms( cfinstance.get_changing_features_names() )'>
+                        </app-counterfactual-details>
+                    </div>
 
                 </mat-expansion-panel>
             </mat-accordion>
-
-            <!-- <app-counterfactual-instance 
-                *ngFor='let cfinstance of this.counterfactualsState.loadedCounterfactuals'
-                [counterfactualinstance]='cfinstance'>
-            </app-counterfactual-instance> -->
-
 
         </div>
     </div>

@@ -1,3 +1,5 @@
+@import 'src/global_styles/global_styles.scss';
+
 :host{
 
     width: 100%;
@@ -18,6 +20,7 @@
 .chart-wrapper{
 
     display: flex;
+    flex-direction: column;
     flex: 1;
 
 }
@@ -25,5 +28,21 @@
 .chart-container{
 
     display: flex;
+    flex: 7;
+}
+
+.chart-header-container{
+
+    display: flex;
     flex: 1;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.displacement-direction-container{
+    
+    display: flex;
+    flex: 1;
+    justify-content: center;
+
 }

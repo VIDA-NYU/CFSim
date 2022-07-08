@@ -23,21 +23,27 @@ export class StaticHistogramController {
 
     // current histogram Data
     public histogramData: HistogramData[] = [];
-    public actionInstance!: Action;
+    public rangeSelection!: number[];
+    public displacement!: number[];
 
     // margins
     public margins: { top: number, bottom: number, left: number, right: number } = { top: 30, bottom: 30, left: 30, right: 30 };
 
     constructor(){}   
 
-    public render_chart( chartContainer: HTMLElement, histData: HistogramData[], actionInstance: Action ): void {
+    public get_displacement_string(): string{
+        return `from ${this.displacement[0]} to ${this.displacement[1]}`
+    }
+
+    public render_chart( chartContainer: HTMLElement, histData: HistogramData[], rangeSelection: number[], displacement: number[] ): void {
 
         // initializing chart
         this.initialize_chart( chartContainer );
 
         // rendering chart
         this.histogramData = histData;
-        this.actionInstance = actionInstance;
+        this.rangeSelection = rangeSelection;
+        this.displacement = displacement;
         this.update_chart();
 
     }
@@ -54,7 +60,6 @@ export class StaticHistogramController {
     }
 
     private update_chart(): void {
-
 
         // transitions
         const t = this.svg.transition().duration(50);
@@ -83,9 +88,17 @@ export class StaticHistogramController {
                 .attr('height', (row: HistogramData, index: number) => this.yScale(row.value) )
                 .attr('class', 'hist-bar')
                 .attr('fill', (row: HistogramData, index: number) => {
-                    console.log( this.actionInstance.featureFloor, ' - ', row.start );
-                    if(  row.start >= this.actionInstance.featureFloor && row.end <= this.actionInstance.featureCeil ) return '#294B93'
+
+                    if( this.displacement ){
+                        if( this.displacement[0] >= row.start && this.displacement[0] <= row.end ) return '#294B93';
+                        if( this.displacement[1] >= row.start && this.displacement[1] <= row.end ) return '#ef8a62'
+                    } else {
+                        if( !this.rangeSelection ) return '#9B9B9B';
+                        if(  row.start >= this.rangeSelection[0] && row.end <= this.rangeSelection[1] ) return '#294B93'   
+                    }
                     return  '#9B9B9B';
+
+                    
                 })
                 .style('z-index', 5)
         );

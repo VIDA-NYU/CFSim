@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Action } from 'src/app/model/action.model';
 import { HistogramData } from 'src/app/model/types';
 import { StaticHistogramController } from './controller/static-histogram.controller';
 
@@ -20,7 +19,8 @@ export class StaticHistogramComponent implements OnInit, AfterViewInit {
   @Input('title') title: string = '';
   @Input('histdata') histdata: HistogramData[] = []; 
   @Input('histSelection') histSelection: number[] = [];
-  @Input('actioninstance') actionInstance!: Action;
+  @Input('rangeselection') rangeSelection!: number[];
+  @Input('displacement') displacement!: number[];
 
   constructor() {
 
@@ -32,7 +32,7 @@ export class StaticHistogramComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
 
-    this.staticHistogramController?.render_chart( this.chartContainerRef.nativeElement, this.histdata, this.actionInstance);
+    this.staticHistogramController?.render_chart( this.chartContainerRef.nativeElement, this.histdata, this.rangeSelection, this.displacement );
 
   }
 

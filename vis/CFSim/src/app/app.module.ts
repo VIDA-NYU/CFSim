@@ -19,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CounterfactualFeatureInstanceComponent } from './components/counterfactual-feature-instance/counterfactual-feature-instance.component';
 import { SelectorHistogramComponent } from './components/charts/selector-histogram/selector-histogram.component';
 import { StaticHistogramComponent } from './components/charts/static-histogram/static-histogram.component';
+import { CounterfactualDetailsComponent } from './components/counterfactual-details/counterfactual-details.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { StaticHistogramComponent } from './components/charts/static-histogram/s
     ActionBuilderDialogComponent,
     CounterfactualFeatureInstanceComponent,
     SelectorHistogramComponent,
-    StaticHistogramComponent
+    StaticHistogramComponent,
+    CounterfactualDetailsComponent
   ],
   imports: [
     BrowserModule,

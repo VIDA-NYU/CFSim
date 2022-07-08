@@ -22,7 +22,7 @@
                 <div class="card-body-container">
                     <app-static-histogram 
                         [histdata]='this.histData'
-                        [actioninstance]='this.actionInstance'
+                        [rangeselection]='[this.actionInstance.featureFloor, this.actionInstance.featureCeil]'
                         ></app-static-histogram>
                 </div>
                 

@@ -12,6 +12,18 @@ export class Dataset {
     public get_feature_histogram( featureName: string ): HistogramData[] {
         return this.histograms[featureName];
     }
+
+    public get_features_histograms( featureNames: string[] ): { [featureName: string]: HistogramData[] } {
+
+        const featureHistograms: { [featureName: string]: HistogramData[] } = {};
+        featureNames.forEach( (featureName: string) => {
+            featureHistograms[featureName] = this.histograms[featureName];
+        })
+
+        return featureHistograms;
+
+    }
+
     
     public is_loaded(): boolean{
         return this.features.length !== 0;
