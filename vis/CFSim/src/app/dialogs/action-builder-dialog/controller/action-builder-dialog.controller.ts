@@ -1,6 +1,9 @@
 import { FormGroup } from "@angular/forms";
+import { Action } from "src/app/model/action.model";
 import { HistogramData } from "src/app/model/types";
+import { Serializer } from "src/app/serialization/serializer";
 import { ActionsState } from "src/app/state/actions.state";
+import { CounterfactualsState } from "src/app/state/counterfactuals.state";
 import { DataState } from "src/app/state/data.state";
 
 export class ActionBuilderDialogController {
@@ -13,7 +16,7 @@ export class ActionBuilderDialogController {
     public histData: HistogramData[] = [];
     public histCurrentSelection: number[] = [];
 
-    constructor( public actionsState: ActionsState, public dataState: DataState ){}
+    constructor( public actionsState: ActionsState, public dataState: DataState, public counterfactualsState: CounterfactualsState ){}
 
     public initialize_controller( forms: { [ formName: string ]: FormGroup<any> } ): void {
 
@@ -50,6 +53,11 @@ export class ActionBuilderDialogController {
 
         // adding constraint
         this.actionsState.add_action( this.createdForms['actionBuilderForm'].value );    
+
+        // requerying for counterfactuals
+        const currentActions: Action[] = this.actionsState.created_actions;
+        const serializedActions: { [featureName: string]: number[] } = Serializer.mlapi_update_counterfactual_examples_actions_parameter( currentActions );
+        this.counterfactualsState.update_counterfactual_examples( {samplesize: 10, modelname: 'DICE'},  serializedActions );
     }
 
 }

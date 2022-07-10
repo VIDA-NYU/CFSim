@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ActionsState } from 'src/app/state/actions.state';
+import { CounterfactualsState } from 'src/app/state/counterfactuals.state';
 import { DataState } from 'src/app/state/data.state';
 import { CustomFormBuilder } from 'src/app/utils/formbuilder.custom';
 import { ActionBuilderDialogController } from './controller/action-builder-dialog.controller';
@@ -24,9 +25,10 @@ export class ActionBuilderDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<ActionBuilderDialogComponent>, 
     public actionState: ActionsState, 
     public dataState: DataState,
-    public formBuilder: FormBuilder ) {
+    public formBuilder: FormBuilder,
+    public counterfactualsState: CounterfactualsState  ) {
 
-    this.actionBuilderDialogController = new ActionBuilderDialogController( actionState, dataState );
+    this.actionBuilderDialogController = new ActionBuilderDialogController( actionState, dataState, counterfactualsState );
 
   }
 

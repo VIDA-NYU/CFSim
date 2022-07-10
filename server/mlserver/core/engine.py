@@ -15,4 +15,4 @@ class Engine:
 
 
     def generate_counterfactual_set( self, params ):
-        return json.dumps( self.counterfactualPredictor.get_counterfactual_set( queryinstance=params['queryinstance'], parameters=params['parameters'] ), cls=CounterfactualInstanceEnconder )
+        return json.dumps( self.counterfactualPredictor.get_counterfactual_set( queryinstance=params['queryinstance'], parameters=params['parameters'], constraints=params['constraints'] ), cls=CounterfactualInstanceEnconder )

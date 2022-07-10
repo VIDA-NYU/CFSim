@@ -15,14 +15,12 @@ class CounterfactualPredictor:
 
         self.loadedCounterfactualModel = None
    
-    def get_counterfactual_set( self, queryinstance, parameters ):
+    def get_counterfactual_set( self, queryinstance, parameters, constraints={} ):
 
 
         ## parsing parameters
         model = parameters['modelname']
         sampleSize = parameters['samplesize']
-
-        print("SAMPLE SIZE: ", sampleSize)
 
         if( self.loadedCounterfactualModel == None ):
             self.loadedCounterfactualModel = self._load_counterfactual_model()
@@ -31,7 +29,7 @@ class CounterfactualPredictor:
         queryInput = pd.read_json(json.dumps( [queryinstance] ), orient ='records')
         
         ## generating cfs
-        cfs = self.loadedCounterfactualModel.get_counterfactuals(queryInput=queryInput, samplesize=sampleSize)
+        cfs = self.loadedCounterfactualModel.get_counterfactuals(queryInput=queryInput, samplesize=sampleSize, constraints=constraints)
         cfs = json.loads(cfs.to_json())
         
         return {'counterfactuals': self._parse_conterfactuals( cfs )}
@@ -75,6 +73,6 @@ class CounterfactualPredictor:
 
         ## creating dice model
         dice_model = dice_ml.Model(model=sklearn_model, backend='sklearn')
-        dice_exp = dice_ml.Dice(dice_data, dice_model)
+        dice_exp = dice_ml.Dice(dice_data, dice_model, method='genetic')
 
         return CounterfactualModel( id='diabetes', model=dice_exp )
