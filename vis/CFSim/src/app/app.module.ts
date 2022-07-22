@@ -20,6 +20,8 @@ import { CounterfactualFeatureInstanceComponent } from './components/counterfact
 import { SelectorHistogramComponent } from './components/charts/selector-histogram/selector-histogram.component';
 import { StaticHistogramComponent } from './components/charts/static-histogram/static-histogram.component';
 import { CounterfactualDetailsComponent } from './components/counterfactual-details/counterfactual-details.component';
+import { SuggestionListComponent } from './components/suggestion-list/suggestion-list.component';
+import { SuggestionInstanceComponent } from './components/suggestion-instance/suggestion-instance.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { CounterfactualDetailsComponent } from './components/counterfactual-deta
     CounterfactualFeatureInstanceComponent,
     SelectorHistogramComponent,
     StaticHistogramComponent,
-    CounterfactualDetailsComponent
+    CounterfactualDetailsComponent,
+    SuggestionListComponent,
+    SuggestionInstanceComponent
   ],
   imports: [
     BrowserModule,

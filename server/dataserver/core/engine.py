@@ -1,10 +1,11 @@
 import json
+import glob
 
 ## local imports
-from datasource.datasetloader import DatasetLoader
+from ..datasource.datasetloader import DatasetLoader
 
 ## serialization
-from serialization.encoders import DatasetEncoder
+from ..serialization.encoders import DatasetEncoder
 
 class Engine:
 

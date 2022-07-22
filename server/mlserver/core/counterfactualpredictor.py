@@ -6,8 +6,8 @@ import dice_ml
 import json
 
 ## local imports
-from model.counterfactualmodel import CounterfactualModel
-from model.counterfactulainstance import CounterfactualInstance
+from ..model.counterfactualmodel import CounterfactualModel
+from ..model.counterfactulainstance import CounterfactualInstance
 
 class CounterfactualPredictor:
 

@@ -1,10 +1,21 @@
 import pandas as pd
 
 # local imports
-from config.constants import PATHCONSTS
-from utils.histograms import HistogramGenerator
+from ..config.constants import PATHCONSTS
+from ..utils.histograms import HistogramGenerator
 
 class CSVLoader:
+
+    @staticmethod
+    def load_dataframe( datasetName: str ) -> pd.DataFrame:
+
+        ## defining the current dataset path
+        currentDatasetPath: str = f'{ PATHCONSTS["DATASETSPATHCSV"].replace("DATASETNAME", datasetName) }'
+
+        ## opening with pandas
+        df = pd.read_csv(currentDatasetPath)
+
+        return df
 
     @staticmethod
     def load_csv( datasetName: str ):

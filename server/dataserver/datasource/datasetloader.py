@@ -4,7 +4,8 @@ import glob
 import os
 
 # local imports
-from datasource.csvloader import CSVLoader
+from .csvloader import CSVLoader
+from ..config.constants import PATHCONSTS
 
 class DatasetLoader:
 
@@ -13,9 +14,13 @@ class DatasetLoader:
         return CSVLoader.load_csv( datasetName )
 
     @staticmethod
+    def load_dataframe( datasetName: str ):
+        return CSVLoader.load_dataframe( datasetName )
+
+    @staticmethod
     def get_available_datasets():
 
-        availableDatasets = glob.glob('../../data/datasets/*')
+        availableDatasets = glob.glob(f'{PATHCONSTS["DATASETSFOLDER"]}/*')
         availableDatasets = list( map( lambda filename: os.path.basename(filename).split('.')[0], availableDatasets ))
 
         return { 'datasets': availableDatasets }     
