@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FeatureSuggestion } from 'src/app/model/feature-suggestion.model';
+import { FeatureSuggestionState } from 'src/app/state/feature-suggestion.state';
+import { SuggestionInstanceController } from './controller/suggestion-instance.controller';
 
 @Component({
   selector: 'app-suggestion-instance',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SuggestionInstanceComponent implements OnInit {
 
-  constructor() { }
+  // controller reference
+  public suggestionInstanceController: SuggestionInstanceController | null = null;
 
-  ngOnInit(): void {
+  // input variables
+  @Input('featuresuggestion') featureSuggestion!: FeatureSuggestion;
+
+  constructor( public featureSuggestionState: FeatureSuggestionState ) {
+
+    this.suggestionInstanceController = new SuggestionInstanceController( this. featureSuggestionState );
+
   }
+
+  ngOnInit(): void {}
 
 }

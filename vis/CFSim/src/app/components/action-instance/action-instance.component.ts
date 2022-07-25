@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Action } from 'src/app/model/action.model';
 import { HistogramData } from 'src/app/model/types';
 
@@ -11,6 +11,9 @@ export class ActionInstanceComponent implements OnInit {
 
   @Input('actioninstance') actionInstance!: Action;
   @Input('histdata') histData!: HistogramData[];
+
+  // output events emitters
+  @Output('ondeleteclicked') ondeleteclicked: EventEmitter<{'action': Action}> = new EventEmitter<{'action': Action}>();
 
   constructor() { }
 

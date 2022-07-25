@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FeatureSuggestionState } from 'src/app/state/feature-suggestion.state';
+import { SuggestionListController } from './controller/suggestion-list.controller';
 
 @Component({
   selector: 'app-suggestion-list',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SuggestionListComponent implements OnInit {
 
-  constructor() { }
+  // controller reference
+  public suggestionListController: SuggestionListController | null = null;
 
-  ngOnInit(): void {
+  constructor( public featureSuggestionState: FeatureSuggestionState ) { 
+
+    this.suggestionListController = new SuggestionListController( this.featureSuggestionState );
+
   }
+
+  ngOnInit(): void {}
 
 }

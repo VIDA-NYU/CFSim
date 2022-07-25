@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { environment } from "src/environments/environment";
 import { DataAPI } from "../api/data.api";
 import { Dataset } from "../model/dataset.model";
 import { Deserializer } from "../serialization/deserializer";

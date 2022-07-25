@@ -25,7 +25,7 @@ def generate_suggested_features():
     ## reading parameters
     requestParams = request.get_json()
 
-    return engine.generate_suggested_features()
+    return engine.generate_suggested_features( requestParams )
 
 @mlserverbp.before_app_first_request
 def init_server_module():

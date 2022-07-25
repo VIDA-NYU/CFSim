@@ -24,7 +24,5 @@ class Engine:
 
 
     ## feature selection
-    def generate_suggested_features( self ):
-
-        FeatureSelectors.select_next_features( 'diabetes' )
-        return json.dumps({'response':'success'})
+    def generate_suggested_features( self, params ):
+        return json.dumps( FeatureSelectors.select_next_features( 'diabetes', params['constraints'] ) )

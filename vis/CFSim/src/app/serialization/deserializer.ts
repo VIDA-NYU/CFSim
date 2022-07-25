@@ -2,6 +2,7 @@
 import  { CounterfactualFeatureInstance } from '../model/counterfactual-feature-instance.model';
 import { CounterfactualInstance } from '../model/counterfactual-instance.model';
 import { Dataset } from "../model/dataset.model";
+import { FeatureSuggestion } from '../model/feature-suggestion.model';
 import { HistogramData } from '../model/types';
 
 
@@ -52,6 +53,20 @@ export class Deserializer {
     
 
         return parsedCounterfactualList;
+    }
+
+    public static mlapi_get_feature_suggestions( requestObj: any ): FeatureSuggestion[] {
+
+        const suggestedFeatures: any[] = requestObj['suggestedfeatures'];
+        const parsedSuggestedFeatures: FeatureSuggestion[] = [];
+        
+        suggestedFeatures.forEach( (feature: any) => {
+            const currentSuggestionFeature: FeatureSuggestion = new FeatureSuggestion( feature.featureName, 0, 0, feature.score );
+            parsedSuggestedFeatures.push(currentSuggestionFeature);
+        });
+
+        return parsedSuggestedFeatures;
+
     }
 
 }

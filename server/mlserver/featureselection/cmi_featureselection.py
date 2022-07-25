@@ -5,12 +5,23 @@ from scipy.special import digamma
 
 class CMIFeatureSelection:
 
-    def select_topk_features( k: int, dataframe: pd.DataFrame ):
+    @staticmethod
+    def select_topk_features( k: int, dataframe: pd.DataFrame, constraints: list  ):
 
+        constraintColumnNames = set(map( lambda constraint: constraint['featureName'], constraints ))
+        allColumnNames = set(list(dataframe.columns))
+        potentialFeatures = allColumnNames.difference(constraintColumnNames)
+        
+        ## calculating pairwise mutual information
+        mutualInformation = []
+        for potentialFeature in potentialFeatures:
+            mutualInformationScore = CMIFeatureSelection.cmi([potentialFeature], ['class'], constraintColumnNames, k, dataframe)
+            mutualInformation.append({ 'featureName': potentialFeature, 'score': mutualInformationScore })
 
-        # cmi(['pwidth'], ['class'], ['swidth'], 5, df)
+        ## sorting CMI scores
+        mutualInformation.sort( key=lambda obj: obj['score'], reverse=True )
 
-        pass
+        return {'suggestedfeatures': mutualInformation }
 
 
     ###  Author: Octavio Mesner
@@ -20,8 +31,8 @@ class CMIFeatureSelection:
     # If a variable is categorical, M/F eg, we must define a distance
     # if not equal
     # might need to be changed to something else later
-
-    def __getPairwiseDistArray(data, coords = [], discrete_dist = 1):
+    @staticmethod
+    def getPairwiseDistArray(data, coords = [], discrete_dist = 1):
         '''
         Input: 
         data: pandas data frame
@@ -46,7 +57,8 @@ class CMIFeatureSelection:
                                         data[col_names[coord]].to_numpy()[:,None])) * discrete_dist
         return distArray
 
-    def __getPointCoordDists(distArray, ind_i, coords = list()):
+    @staticmethod
+    def getPointCoordDists(distArray, ind_i, coords = list()):
         '''
         Input: 
         ind_i: current observation row index
@@ -59,7 +71,8 @@ class CMIFeatureSelection:
         obsDists = np.transpose(distArray[coords, :, ind_i])
         return obsDists
 
-    def __countNeighbors(coord_dists, rho, coords = list()):
+    @staticmethod
+    def countNeighbors(coord_dists, rho, coords = list()):
         '''
         input: list of coordinate distances (output of coordDistList), 
         coordinates we want (coords), distance (rho)
@@ -72,7 +85,8 @@ class CMIFeatureSelection:
         count = np.count_nonzero(dists <= rho) - 1
         return count
 
-    def __getKnnDist(distArray, k):
+    @staticmethod
+    def getKnnDist(distArray, k):
         '''
         input:
         distArray: numpy 2D array of pairwise, coordinate wise distances,
@@ -87,7 +101,8 @@ class CMIFeatureSelection:
         k_tilde = np.count_nonzero(dists <= ordered_dists[k]) - 1
         return k_tilde, ordered_dists[k]
 
-    def __cmiPoint(point_i, x, y, z, k, distArray):
+    @staticmethod
+    def cmiPoint(point_i, x, y, z, k, distArray):
         '''
         input:
         point_i: current observation row index
@@ -98,18 +113,19 @@ class CMIFeatureSelection:
         cmi point estimate
         '''
         n = distArray.shape[1]
-        coord_dists = getPointCoordDists(distArray, point_i, x + y + z)
-        k_tilde, rho = getKnnDist(coord_dists, k)
+        coord_dists = CMIFeatureSelection.getPointCoordDists(distArray, point_i, x + y + z)
+        k_tilde, rho = CMIFeatureSelection.getKnnDist(coord_dists, k)
         x_coords = list(range(len(x)))
         y_coords = list(range(len(x), len(x+y)))
         z_coords = list(range(len(x+y), len(x+y+z)))
-        nxz = countNeighbors(coord_dists, rho, x_coords + z_coords)
-        nyz = countNeighbors(coord_dists, rho, y_coords + z_coords)
-        nz = countNeighbors(coord_dists, rho, z_coords)
+        nxz = CMIFeatureSelection.countNeighbors(coord_dists, rho, x_coords + z_coords)
+        nyz = CMIFeatureSelection.countNeighbors(coord_dists, rho, y_coords + z_coords)
+        nz = CMIFeatureSelection.countNeighbors(coord_dists, rho, z_coords)
         xi = digamma(k_tilde) - digamma(nxz) - digamma(nyz) + digamma(nz)
         return xi
 
-    def __miPoint(point_i, x, y, k, distArray):
+    @staticmethod
+    def miPoint(point_i, x, y, k, distArray):
         '''
         input:
         point_i: current observation row index
@@ -120,16 +136,17 @@ class CMIFeatureSelection:
         mi point estimate
         '''
         n = distArray.shape[1]
-        coord_dists = getPointCoordDists(distArray, point_i, x + y)
-        k_tilde, rho = getKnnDist(coord_dists, k)
+        coord_dists = CMIFeatureSelection.getPointCoordDists(distArray, point_i, x + y)
+        k_tilde, rho = CMIFeatureSelection.getKnnDist(coord_dists, k)
         x_coords = list(range(len(x)))
         y_coords = list(range(len(x), len(x+y)))
         nx = countNeighbors(coord_dists, rho, x_coords)
         ny = countNeighbors(coord_dists, rho, y_coords)
         xi = digamma(k_tilde) + digamma(n) - digamma(nx) - digamma(ny)
         return xi
-        
-    def __cmi(x, y, z, k, data, discrete_dist = 1, minzero = 1):
+    
+    @staticmethod
+    def cmi(x, y, z, k, data, discrete_dist = 1, minzero = 1):
         '''
         computes conditional mutual information, I(x,y|z)
         input:
@@ -151,11 +168,11 @@ class CMIFeatureSelection:
                 vrbls[i] = list(data.columns.get_indexer(lst))
         x,y,z = vrbls
                 
-        distArray = getPairwiseDistArray(data, x + y + z, discrete_dist)
+        distArray = CMIFeatureSelection.getPairwiseDistArray(data, x + y + z, discrete_dist)
         if len(z) > 0:
-            ptEsts = map(lambda obs: cmiPoint(obs, x, y, z, k, distArray), range(n))
+            ptEsts = map(lambda obs: CMIFeatureSelection.cmiPoint(obs, x, y, z, k, distArray), range(n))
         else:
-            ptEsts = map(lambda obs: miPoint(obs, x, y, k, distArray), range(n))
+            ptEsts = map(lambda obs: CMIFeatureSelection.miPoint(obs, x, y, k, distArray), range(n))
         if minzero == 1:
             return(max(sum(ptEsts)/n,0))
         elif minzero == 0:

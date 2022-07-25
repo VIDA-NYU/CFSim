@@ -6,12 +6,9 @@ from mlserver.featureselection.cmi_featureselection import CMIFeatureSelection
 class FeatureSelectors:
 
     @staticmethod
-    def select_next_features( datasetname: str ):
+    def select_next_features( datasetname: str, constraints: list ):
 
         dataframe = DatasetLoader.load_dataframe( 'diabetes' )
 
-
-        print(dataframe.head())
-
-
-        return ['feature1', 'feature2']
+        return CMIFeatureSelection.select_topk_features( 3, dataframe, constraints )
+        

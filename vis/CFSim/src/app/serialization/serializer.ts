@@ -12,4 +12,8 @@ export class Serializer {
         return serializedActions;
     }
 
+    public static mlapi_update_feature_suggestions( actions: Action[] ): any {
+        return actions;
+    }
+
 }

@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { ActionsState } from 'src/app/state/actions.state';
 import { CounterfactualsState } from 'src/app/state/counterfactuals.state';
 import { DataState } from 'src/app/state/data.state';
+import { FeatureSuggestionState } from 'src/app/state/feature-suggestion.state';
 import { CustomFormBuilder } from 'src/app/utils/formbuilder.custom';
 import { ActionBuilderDialogController } from './controller/action-builder-dialog.controller';
 
@@ -26,9 +27,10 @@ export class ActionBuilderDialogComponent implements OnInit {
     public actionState: ActionsState, 
     public dataState: DataState,
     public formBuilder: FormBuilder,
-    public counterfactualsState: CounterfactualsState  ) {
+    public counterfactualsState: CounterfactualsState,
+    public featureSuggestionState: FeatureSuggestionState  ) {
 
-    this.actionBuilderDialogController = new ActionBuilderDialogController( actionState, dataState, counterfactualsState );
+    this.actionBuilderDialogController = new ActionBuilderDialogController( actionState, dataState, counterfactualsState, this.featureSuggestionState );
 
   }
 

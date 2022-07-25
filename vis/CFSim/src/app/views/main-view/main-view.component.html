@@ -32,7 +32,10 @@
         <div class="right-sidebar-wrapper sidebar-wrapper">
 
             <div class="action-guide-wrapper">
-                <app-action-list [datasetloaded]='this.dataState.loadedDataset.is_loaded()'></app-action-list>
+                <app-action-list
+                    (ondeleteclicked)='this.mainViewController?.action_deleted()' 
+                    [datasetloaded]='this.dataState.loadedDataset.is_loaded()'>
+                </app-action-list>
             </div>
 
             <div class="suggestions-overview-wrapper">

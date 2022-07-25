@@ -8,6 +8,7 @@ import json
 ## local imports
 from ..model.counterfactualmodel import CounterfactualModel
 from ..model.counterfactulainstance import CounterfactualInstance
+from dataserver.datasource.datasetloader import DatasetLoader
 
 class CounterfactualPredictor:
 
@@ -63,13 +64,13 @@ class CounterfactualPredictor:
     def _load_counterfactual_model( self ):
         
         ## loading dataset
-        df = pd.read_csv('../../data/raw/diabetes.csv')
+        df = pd.read_csv('../data/raw/diabetes.csv')
 
         ## transforming pandas dataframe into Dice dataframe
         dice_data = dice_ml.Data(dataframe=df, continuous_features=df.drop(columns=['Outcome']).columns.tolist(), outcome_name='Outcome')
 
         ## loading model
-        sklearn_model = load('../../models/classifiers/diabetes.sav')
+        sklearn_model = load('../models/classifiers/diabetes.sav')
 
         ## creating dice model
         dice_model = dice_ml.Model(model=sklearn_model, backend='sklearn')

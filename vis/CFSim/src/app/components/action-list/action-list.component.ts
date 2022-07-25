@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DialogManager } from 'src/app/dialogs/dialog-manager';
+import { Action } from 'src/app/model/action.model';
 import { ActionsState } from 'src/app/state/actions.state';
 import { DataState } from 'src/app/state/data.state';
 import { ActionListController } from './controller/action-list.controller';
@@ -13,6 +14,9 @@ export class ActionListComponent implements OnInit {
 
   // input variables
   @Input('datasetloaded') datasetLoaded: boolean = false;
+
+  // output events emitters
+  @Output('ondeleteclicked') ondeleteclicked: EventEmitter<{'action': Action}> = new EventEmitter<{'action': Action}>();
 
   // controller
   public actionListController: ActionListController | null = null;

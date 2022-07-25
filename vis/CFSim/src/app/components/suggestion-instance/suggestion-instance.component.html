@@ -6,22 +6,28 @@
 
                 <div class="card-header-container">
 
-                    <!-- <div class='header-component'>
-                        <h3>{{ this.actionInstance.featureName }}</h3>
+                    <div class="header-component">
+                        <h3>{{ this.featureSuggestion.featureName }}</h3>
                     </div>
-                    <div class='header-component trash-icon-container'>
-                        <button mat-icon-button>
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                    </div> -->
                     
                 </div>
 
                 <div class="card-body-container">
-                    <!-- <app-static-histogram 
-                        [histdata]='this.histData'
-                        [rangeselection]='[this.actionInstance.featureFloor, this.actionInstance.featureCeil]'>
-                    </app-static-histogram> -->
+
+                    <h2><b>Score: </b> {{ this.featureSuggestion.score }}</h2>
+                   
+                </div>
+
+                <div class="card-footer-container">
+
+
+                    <div class="icon-container">
+                        <mat-icon>close</mat-icon>
+                    </div>
+                    <div class="icon-container">
+                        <mat-icon>done</mat-icon>
+                    </div>
+                    
                 </div>
                 
             </div>

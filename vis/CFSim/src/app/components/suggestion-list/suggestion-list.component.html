@@ -11,9 +11,11 @@
         <div class="suggestion-list-wrapper">
             <div class="suggestion-list-container">
                 <div class="scrollable-container">
-                    <app-suggestion-instance></app-suggestion-instance>
-                    <app-suggestion-instance></app-suggestion-instance>
-                    <app-suggestion-instance></app-suggestion-instance>
+
+                    <div class="suggestion-instance-container" *ngFor='let suggestion of this.featureSuggestionState.currentSuggestedFeatures'>
+                        <app-suggestion-instance [featuresuggestion]='suggestion'></app-suggestion-instance>
+                    </div>
+
                 </div>
             </div>
         </div>        
