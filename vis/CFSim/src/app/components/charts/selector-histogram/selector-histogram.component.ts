@@ -7,7 +7,7 @@ import { SelectorHistogramController } from './controller/selector-histogram.con
   templateUrl: './selector-histogram.component.html',
   styleUrls: ['./selector-histogram.component.scss']
 })
-export class SelectorHistogramComponent implements OnInit, OnChanges {
+export class SelectorHistogramComponent implements OnInit, OnChanges, AfterViewInit {
 
   // controller reference
   public selectorHistogramController: SelectorHistogramController | null = null;
@@ -38,10 +38,18 @@ export class SelectorHistogramComponent implements OnInit, OnChanges {
 
   ngOnChanges( changes: SimpleChanges ): void {
 
-    if( 'histdata' in changes && changes['histdata'] && changes['histdata'].currentValue.length > 0 ){
+    if( 'histdata' in changes && changes['histdata'] && changes['histdata'].currentValue.length > 0 && this.chartContainerRef ){
       this.selectorHistogramController?.render_chart( this.chartContainerRef.nativeElement, changes['histdata'].currentValue );
     }
 
+  }
+
+  ngAfterViewInit(): void {
+
+    if( this.histdata!?.length > 0 && this.chartContainerRef ){
+      this.selectorHistogramController?.render_chart( this.chartContainerRef.nativeElement, this.histdata! );
+    }
+     
   }
 
 }

@@ -25,6 +25,7 @@ class CSVLoader:
 
         ## opening with pandas
         df = pd.read_csv(currentDatasetPath)
+        df = df.head(100)
 
         histograms = HistogramGenerator.create_histogram( df )
 
