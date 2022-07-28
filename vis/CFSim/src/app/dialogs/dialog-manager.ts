@@ -29,8 +29,8 @@ export class DialogManager {
 
         this.dialog.open( DataLoaderDialogComponent, {
             panelClass: 'custom-dialog-container',
-            width: '800px',
-            height: '300px'
+            width: '1200px',
+            height: '800px'
         });
 
     }

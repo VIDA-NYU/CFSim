@@ -5,8 +5,28 @@
         <h2>Select the dataset</h2>
     </div>
 
+    <div class='dialog-body-container'>
 
-    <form [formGroup]='this.datasetSelectorForm' (ngSubmit)='this.dataLoaderDialogController?.load_dataset();'> 
+        <div class="dataset-selector-container">
+            <mat-form-field appearance="fill">
+                <mat-label>Dataset</mat-label>
+                <mat-select formControlName='datasetname'>
+                    <mat-option *ngFor="let dataset of this.dataLoaderDialogController?.availableDatasets" [value]="dataset">
+                        {{ dataset }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+
+        <div class='body-section-wraper'></div>
+
+
+    </div>
+
+    <div class='dialog-footer-container'></div>
+
+    <!-- <form [formGroup]='this.datasetSelectorForm' (ngSubmit)='this.dataLoaderDialogController?.load_dataset();'> 
 
         <div class="dialog-body-container">
             <div class="dataset-selector-container">
@@ -28,7 +48,7 @@
     
         </div>
 
-    </form>
+    </form> -->
 
         
 
