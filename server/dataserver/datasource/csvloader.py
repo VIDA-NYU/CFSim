@@ -25,8 +25,9 @@ class CSVLoader:
 
         ## opening with pandas
         df = pd.read_csv(currentDatasetPath)
-        df = df.head(100)
+        dfSnippet = df.head(100)
 
+        ## TODO: Remove it from here
         histograms = HistogramGenerator.create_histogram( df )
 
-        return {'features': df.columns.values, 'rows': df.values, 'predictions': [ 0, 1, 0, 0, 0, 1 ,1], 'histograms': histograms }
+        return {'features': dfSnippet.columns.values, 'rows': dfSnippet.values, 'predictions': [ 0, 1, 0, 0, 0, 1 ,1], 'histograms': histograms }

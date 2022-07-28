@@ -5,7 +5,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { DataState } from 'src/app/state/data.state';
 
 // angular imports
-import { AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
 
 // local imports
 import { DataLoaderDialogController } from './controller/data-loader-dialog.controller';
@@ -16,7 +16,7 @@ import { FilterManagerComponent } from 'src/app/components/filter-manager/filter
   templateUrl: './data-loader-dialog.component.html',
   styleUrls: ['./data-loader-dialog.component.scss']
 })
-export class DataLoaderDialogComponent implements OnInit {
+export class DataLoaderDialogComponent implements OnInit, AfterViewInit {
 
   // controller reference
   public dataLoaderDialogController: DataLoaderDialogController | null = null;
@@ -25,7 +25,7 @@ export class DataLoaderDialogComponent implements OnInit {
   @Output('onrowclicked') onrowclicked: EventEmitter<{row: any}> = new EventEmitter<{row: any}>();
 
   // dom refs
-  @ViewChild('filtermanagerref') filtermanagerref!: FilterManagerComponent;
+  @ViewChildren('filtermanagerref') filtermanagerref!: QueryList<FilterManagerComponent>;  //FilterManagerComponent;
 
   constructor( 
     public dialogRef: MatDialogRef<DataLoaderDialogComponent>, 
@@ -35,16 +35,16 @@ export class DataLoaderDialogComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
+  ngAfterViewInit(): void {
+    
     // initializing component
     this.dataLoaderDialogController?.initialize_controller( this.filtermanagerref );
 
     // initializing controller data
     this.dataLoaderDialogController?.initialize_data();
-
     
-
   }
 
   

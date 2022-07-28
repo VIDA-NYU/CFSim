@@ -1,4 +1,5 @@
 // state imports
+import { QueryList } from "@angular/core";
 import { FilterManagerComponent } from "src/app/components/filter-manager/filter-manager.component";
 import { DataFilter } from "src/app/model/data-filter.model";
 import { DataState } from "src/app/state/data.state";
@@ -9,7 +10,7 @@ export class DataLoaderDialogController {
     public availableDatasets: string[] = [];
  
     // elements refs
-    public filterManagerRef!: FilterManagerComponent;
+    public filterManagerRef!: QueryList<FilterManagerComponent>;
 
     constructor( public dataState: DataState ){}
     
@@ -20,10 +21,9 @@ export class DataLoaderDialogController {
     
     }
 
-    public initialize_controller( filterManagerref: FilterManagerComponent ): void {
+    public initialize_controller( filterManagerref: QueryList<FilterManagerComponent> ): void {
 
         this.filterManagerRef = filterManagerref;
-        console.log(this.filterManagerRef);
 
     }
 
@@ -32,7 +32,10 @@ export class DataLoaderDialogController {
         this.dataState.load_dataset( event.value, filters );
 
         // clearing old filters
-        this.filterManagerRef.filterManagerController?.clear_filters();
+        if(this.dataState.loadedDataset.is_loaded()){
+            this.clear_filters();
+        }
+        
 
     }
 
@@ -45,7 +48,7 @@ export class DataLoaderDialogController {
 
     public clear_filters(): void {
 
-        this.filterManagerRef.filterManagerController?.clear_filters();
+        this.filterManagerRef.first.filterManagerController?.clear_filters();
 
     }
 
