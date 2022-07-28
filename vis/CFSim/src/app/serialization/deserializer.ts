@@ -8,7 +8,7 @@ import { HistogramData } from '../model/types';
 
 export class Deserializer {
 
-    public static dataapi_get_dataset_deserializer( requestobj: any ): Dataset {
+    public static dataapi_get_dataset_deserializer( requestobj: any, datasetName: string ): Dataset {
 
 
         // parsing features
@@ -27,7 +27,7 @@ export class Deserializer {
         });
 
         // creating object
-        return new Dataset( features, body, predictions, histograms );
+        return new Dataset( features, body, predictions, histograms, datasetName );
     }
 
     public static mlapi_get_counterfactual_set( requestobj: any[] ): CounterfactualInstance[] {

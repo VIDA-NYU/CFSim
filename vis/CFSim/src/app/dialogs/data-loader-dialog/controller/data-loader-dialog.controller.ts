@@ -1,27 +1,17 @@
 // state imports
+import { FilterManagerComponent } from "src/app/components/filter-manager/filter-manager.component";
+import { DataFilter } from "src/app/model/data-filter.model";
 import { DataState } from "src/app/state/data.state";
-
-// angular imports
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { CustomFormBuilder } from "src/app/utils/formbuilder.custom";
 
 export class DataLoaderDialogController {
 
     // available datasets
     public availableDatasets: string[] = [];
-
-    // created forms
-    public createdForms: { [ formName: string ]: FormGroup<any> } = {};
  
+    // elements refs
+    public filterManagerRef!: FilterManagerComponent;
 
-    constructor( public dataState: DataState, private formBuilder: FormBuilder ){}
-
-    public initialize_controller( forms: { [ formName: string ]: FormGroup<any> } ): void {
-
-        // saving forms refs
-        this.createdForms = forms;
-        
-    }
+    constructor( public dataState: DataState ){}
     
     public async initialize_data(): Promise<void> {
 
@@ -29,12 +19,41 @@ export class DataLoaderDialogController {
         this.availableDatasets = availableDatasets;
     
     }
-    
-    public load_dataset(): void {
 
-        const selectedDataset: string = this.createdForms['datasetSelectorForm'].value['datasetname'];
-        this.dataState.load_dataset( selectedDataset );
+    public initialize_controller( filterManagerref: FilterManagerComponent ): void {
+
+        this.filterManagerRef = filterManagerref;
+        console.log(this.filterManagerRef);
 
     }
+
+    public load_dataset( event: any, filters: DataFilter[] = [] ): void {
+
+        this.dataState.load_dataset( event.value, filters );
+
+        // clearing old filters
+        this.filterManagerRef.filterManagerController?.clear_filters();
+
+    }
+
+    public on_filters_update( filters: DataFilter[] ): void {
+
+        if(this.dataState.loadedDataset.is_loaded()){
+            this.dataState.load_dataset( this.dataState.loadedDataset.name, filters );
+        }
+    }
+
+    public clear_filters(): void {
+
+        this.filterManagerRef.filterManagerController?.clear_filters();
+
+    }
+
+    
+
+
+   
+
+    
 
 }

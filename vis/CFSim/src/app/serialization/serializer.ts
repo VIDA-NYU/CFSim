@@ -1,6 +1,13 @@
 import { Action } from "../model/action.model";
+import { DataFilter } from "../model/data-filter.model";
 
 export class Serializer {
+
+    public static dataapi_get_dataset( dataFilters: DataFilter[], datasetName: string ): { 'datasetname': string, 'filters': DataFilter[] }{
+
+        return { 'datasetname': datasetName, 'filters': dataFilters };
+
+    }
 
     public static mlapi_update_counterfactual_examples_actions_parameter( actions: Action[] ): { [featureName: string]: number[] } {
 

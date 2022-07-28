@@ -5,12 +5,11 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { DataState } from 'src/app/state/data.state';
 
 // angular imports
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 
 // local imports
 import { DataLoaderDialogController } from './controller/data-loader-dialog.controller';
-import { CustomFormBuilder } from 'src/app/utils/formbuilder.custom';
+import { FilterManagerComponent } from 'src/app/components/filter-manager/filter-manager.component';
 
 @Component({
   selector: 'app-data-loader-dialog',
@@ -22,32 +21,29 @@ export class DataLoaderDialogComponent implements OnInit {
   // controller reference
   public dataLoaderDialogController: DataLoaderDialogController | null = null;
 
-  // forms
-  public datasetSelectorForm: FormGroup<any> = new FormGroup({});
-
   // events
   @Output('onrowclicked') onrowclicked: EventEmitter<{row: any}> = new EventEmitter<{row: any}>();
 
+  // dom refs
+  @ViewChild('filtermanagerref') filtermanagerref!: FilterManagerComponent;
+
   constructor( 
     public dialogRef: MatDialogRef<DataLoaderDialogComponent>, 
-    public dataState: DataState,
-    public formBuilder: FormBuilder ) {
+    public dataState: DataState ) {
 
-    this.dataLoaderDialogController = new DataLoaderDialogController( this.dataState, this.formBuilder );
+    this.dataLoaderDialogController = new DataLoaderDialogController( this.dataState );
 
   }
 
   ngOnInit(): void {
 
-    // creating forms
-    this.datasetSelectorForm = CustomFormBuilder.create_dataset_selector_form( this.formBuilder );
-    const forms: { [ formName: string ]: FormGroup<any> } = { 'datasetSelectorForm': this.datasetSelectorForm };
-
-    // initializing controller
-    this.dataLoaderDialogController?.initialize_controller( forms );
+    // initializing component
+    this.dataLoaderDialogController?.initialize_controller( this.filtermanagerref );
 
     // initializing controller data
     this.dataLoaderDialogController?.initialize_data();
+
+    
 
   }
 

@@ -31,6 +31,11 @@ p {
 
 }
 
+form {
+    display: flex;
+    flex: 1;
+}
+
 ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
     background-color: #fff; 
 }

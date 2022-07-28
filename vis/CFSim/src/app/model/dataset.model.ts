@@ -6,7 +6,8 @@ export class Dataset {
         public features: string[], 
         public rows: any[], 
         public predictions: number[],
-        private histograms: { [featureName: string]: HistogramData[]  } ){}
+        private histograms: { [featureName: string]: HistogramData[]  },
+        public name: string ){}
 
 
     public get_feature_histogram( featureName: string ): HistogramData[] {

@@ -22,6 +22,7 @@ import { StaticHistogramComponent } from './components/charts/static-histogram/s
 import { CounterfactualDetailsComponent } from './components/counterfactual-details/counterfactual-details.component';
 import { SuggestionListComponent } from './components/suggestion-list/suggestion-list.component';
 import { SuggestionInstanceComponent } from './components/suggestion-instance/suggestion-instance.component';
+import { FilterManagerComponent } from './components/filter-manager/filter-manager.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { SuggestionInstanceComponent } from './components/suggestion-instance/su
     StaticHistogramComponent,
     CounterfactualDetailsComponent,
     SuggestionListComponent,
-    SuggestionInstanceComponent
+    SuggestionInstanceComponent,
+    FilterManagerComponent
   ],
   imports: [
     BrowserModule,
