@@ -10,6 +10,8 @@ import { AfterViewInit, Component, EventEmitter, OnInit, Output, QueryList, View
 // local imports
 import { DataLoaderDialogController } from './controller/data-loader-dialog.controller';
 import { FilterManagerComponent } from 'src/app/components/filter-manager/filter-manager.component';
+import { CounterfactualsState } from 'src/app/state/counterfactuals.state';
+import { ParametersState } from 'src/app/state/parameters.state';
 
 @Component({
   selector: 'app-data-loader-dialog',
@@ -29,9 +31,11 @@ export class DataLoaderDialogComponent implements OnInit, AfterViewInit {
 
   constructor( 
     public dialogRef: MatDialogRef<DataLoaderDialogComponent>, 
-    public dataState: DataState ) {
+    public dataState: DataState,
+    public counterfactualsState: CounterfactualsState,
+    public parametersState: ParametersState ) {
 
-    this.dataLoaderDialogController = new DataLoaderDialogController( this.dataState );
+    this.dataLoaderDialogController = new DataLoaderDialogController( this.dataState, this.counterfactualsState, this.parametersState );
 
   }
 

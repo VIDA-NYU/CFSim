@@ -27,7 +27,7 @@
 
                     <div class="subcomponent-container">
                         <div class='data-table-container'>
-                            <app-dataset-overview></app-dataset-overview>
+                            <app-dataset-overview (onrowclicked)='this.dataLoaderDialogController?.on_row_selected($event)'></app-dataset-overview>
                         </div>
                     </div>
 

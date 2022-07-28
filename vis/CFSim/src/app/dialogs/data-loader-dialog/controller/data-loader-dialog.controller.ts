@@ -2,7 +2,9 @@
 import { QueryList } from "@angular/core";
 import { FilterManagerComponent } from "src/app/components/filter-manager/filter-manager.component";
 import { DataFilter } from "src/app/model/data-filter.model";
+import { CounterfactualsState } from "src/app/state/counterfactuals.state";
 import { DataState } from "src/app/state/data.state";
+import { ParametersState } from "src/app/state/parameters.state";
 
 export class DataLoaderDialogController {
 
@@ -12,7 +14,7 @@ export class DataLoaderDialogController {
     // elements refs
     public filterManagerRef!: QueryList<FilterManagerComponent>;
 
-    constructor( public dataState: DataState ){}
+    constructor( public dataState: DataState, public counterfactualsState: CounterfactualsState, public parametersState: ParametersState ){}
     
     public async initialize_data(): Promise<void> {
 
@@ -49,6 +51,12 @@ export class DataLoaderDialogController {
     public clear_filters(): void {
 
         this.filterManagerRef.first.filterManagerController?.clear_filters();
+
+    }
+
+    public on_row_selected( event: any ): void {
+
+        this.counterfactualsState.load_counterfactual_examples( event.queryinstance, this.parametersState.get_current_parameters() );
 
     }
 
