@@ -7,7 +7,8 @@ import json
 
 ## local imports
 from ..model.counterfactualmodel import CounterfactualModel
-from ..model.counterfactulainstance import CounterfactualInstance
+from ..model.counterfactualfeatureinstance import CounterfactualFeatureInstance
+from ..model.counterfactualinstance import CounterfactualInstance
 from dataserver.datasource.datasetloader import DatasetLoader
 
 class CounterfactualPredictor:
@@ -48,13 +49,15 @@ class CounterfactualPredictor:
             currentCounterfactualInstance = []
             for featureIndex, featureName  in enumerate(featureNames):
 
-                currentCF = CounterfactualInstance( 
+                currentCF = CounterfactualFeatureInstance( 
                     featureName=featureName, 
                     oldValue=queryInput[featureIndex],
                     newValue=cf[featureIndex] )
 
                 currentCounterfactualInstance.append( currentCF )
 
+            
+            currentCounterfactualInstance = CounterfactualInstance(currentCounterfactualInstance)
             parsedCounterfactuals.append(currentCounterfactualInstance)
 
         

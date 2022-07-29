@@ -23,6 +23,9 @@ import { CounterfactualDetailsComponent } from './components/counterfactual-deta
 import { SuggestionListComponent } from './components/suggestion-list/suggestion-list.component';
 import { SuggestionInstanceComponent } from './components/suggestion-instance/suggestion-instance.component';
 import { FilterManagerComponent } from './components/filter-manager/filter-manager.component';
+import { ExplanationOverviewComponent } from './components/explanation-overview/explanation-overview.component';
+import { StaticScatterplotComponent } from './components/charts/static-scatterplot/static-scatterplot.component';
+import { ExplanationMetricsComponent } from './components/explanation-metrics/explanation-metrics.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,10 @@ import { FilterManagerComponent } from './components/filter-manager/filter-manag
     CounterfactualDetailsComponent,
     SuggestionListComponent,
     SuggestionInstanceComponent,
-    FilterManagerComponent
+    FilterManagerComponent,
+    ExplanationOverviewComponent,
+    StaticScatterplotComponent,
+    ExplanationMetricsComponent
   ],
   imports: [
     BrowserModule,

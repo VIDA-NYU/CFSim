@@ -1,4 +1,4 @@
-class CounterfactualInstance:
+class CounterfactualFeatureInstance:
 
 
     def __init__( self, featureName, oldValue, newValue ):

@@ -18,16 +18,23 @@ class CSVLoader:
         return df
 
     @staticmethod
-    def load_csv( datasetName: str ):
+    def load_csv( datasetName: str, filters: list = [] ):
 
         ## defining the current dataset path
         currentDatasetPath: str = f'{ PATHCONSTS["DATASETSPATHCSV"].replace("DATASETNAME", datasetName) }'
 
         ## opening with pandas
         df = pd.read_csv(currentDatasetPath)
-        dfSnippet = df.head(100)
+        filtereddf = df.copy(deep=True)
+
+        ## filtering dataframe
+        for constraint in filters:
+            filtereddf = filtereddf[  (df[constraint['featureName']] >= constraint['featureFloor']) & (df[constraint['featureName']] <= constraint['featureCeil']) ]
+        
+        ##
+        filtereddf = filtereddf.head(100)
 
         ## TODO: Remove it from here
         histograms = HistogramGenerator.create_histogram( df )
 
-        return {'features': dfSnippet.columns.values, 'rows': dfSnippet.values, 'predictions': [ 0, 1, 0, 0, 0, 1 ,1], 'histograms': histograms }
+        return {'features': filtereddf.columns.values, 'rows': filtereddf.values, 'predictions': [ 0, 1, 0, 0, 0, 1 ,1], 'histograms': histograms }

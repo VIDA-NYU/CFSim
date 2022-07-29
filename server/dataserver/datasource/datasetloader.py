@@ -10,8 +10,8 @@ from ..config.constants import PATHCONSTS
 class DatasetLoader:
 
     @staticmethod
-    def load_dataset( datasetName: str ):
-        return CSVLoader.load_csv( datasetName )
+    def load_dataset( datasetName: str, filters: list = [] ):
+        return CSVLoader.load_csv( datasetName, filters )
 
     @staticmethod
     def load_dataframe( datasetName: str ):

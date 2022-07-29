@@ -5,22 +5,30 @@
     </div>
     
     <div class="current-view-container">
-<!--         
+        
         <div class="left-sidebar-wrapper sidebar-wrapper">
 
-            <div class="dataset-overview-wrapper">
+            <div class='explanation-overview-wrapper'>
+                <app-explanation-overview></app-explanation-overview>
+            </div>
+
+            <div class='explanation-metric-wrapper'>
+                <app-explanation-metrics></app-explanation-metrics>
+            </div>
+
+            <!-- <div class="dataset-overview-wrapper">
                 <app-dataset-overview 
                     (onrowclicked)='this.mainViewController?.dataset_row_clicked($event)'>
                 </app-dataset-overview>
-            </div>
+            </div> -->
 
             <mat-divider></mat-divider>
 
-            <div class="parameter-selector-wrapper">
+            <!-- <div class="parameter-selector-wrapper">
                 <app-parameter-selector></app-parameter-selector>
-            </div>
+            </div> -->
             
-        </div> -->
+        </div>
 
         <mat-divider vertical></mat-divider>
 

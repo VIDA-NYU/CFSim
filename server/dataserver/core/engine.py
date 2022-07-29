@@ -14,7 +14,7 @@ class Engine:
 
     def load_dataset( self, params ):
         print('TODO: ', params['filters'])
-        return json.dumps(DatasetLoader.load_dataset(params['datasetname']), cls=DatasetEncoder)
+        return json.dumps(DatasetLoader.load_dataset(params['datasetname'], filters=params['filters']), cls=DatasetEncoder)
 
     def get_available_datasets( self ):
         return json.dumps(DatasetLoader.get_available_datasets())

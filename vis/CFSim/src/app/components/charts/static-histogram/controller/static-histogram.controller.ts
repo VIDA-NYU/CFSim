@@ -2,7 +2,6 @@ import { HistogramData } from "src/app/model/types";
 import { ChartUtils } from "src/app/utils/charts/charts.utils";
 
 import * as d3 from 'd3';
-import { Action } from "src/app/model/action.model";
 
 export class StaticHistogramController {
 
