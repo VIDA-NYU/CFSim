@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { StaticScatterplotController } from './controller/static-scatterplot.controller';
 
 @Component({
@@ -13,6 +13,9 @@ export class StaticScatterplotComponent implements OnInit, AfterViewInit {
 
   // dom refs
   @ViewChild('chartcontainerref') chartContainerRef!: ElementRef;
+
+  // Input data
+  @Input('data') data: number[][] = [];
 
   constructor() { 
 

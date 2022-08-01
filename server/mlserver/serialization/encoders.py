@@ -9,6 +9,6 @@ class CounterfactualInstanceEnconder(json.JSONEncoder):
     def default(self, obj):
 
         if isinstance( obj, CounterfactualInstance ):
-            return obj.featureInstances
+            return { 'featureInstances': obj.featureInstances, 'projectedX': obj.projectedX, 'projectedY': obj.projectedY }
 
         return obj.__dict__

@@ -2,7 +2,7 @@ import { CounterfactualFeatureInstance } from "./counterfactual-feature-instance
 
 export class CounterfactualInstance {
 
-    constructor( public featureInstances : CounterfactualFeatureInstance[] ){}
+    constructor( public featureInstances : CounterfactualFeatureInstance[], public projectedX: number, public projectedY: number ){}
 
     public get_changing_features(): CounterfactualFeatureInstance[] {
 

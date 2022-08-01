@@ -33,11 +33,10 @@ export class Deserializer {
     public static mlapi_get_counterfactual_set( requestobj: any[] ): CounterfactualInstance[] {
 
         const parsedCounterfactualList: CounterfactualInstance[] = [];
-        requestobj.forEach( (cfinstance: any[], index: number) => {
-
-
+        requestobj.forEach( (cfinstance: any, index: number) => {
+            
             const currentCounterfactualFeatureInstanceList: CounterfactualFeatureInstance[] = [];
-            cfinstance.forEach( (cfFeatureInstance: any, index: number ) => {
+            cfinstance['featureInstances'].forEach( (cfFeatureInstance: any, index: number ) => {
                 
                 const currentCounterfactualFeatureInstance: CounterfactualFeatureInstance = new CounterfactualFeatureInstance( cfFeatureInstance['featureName'], cfFeatureInstance['oldValue'], cfFeatureInstance['newValue'], cfFeatureInstance['variation']  );
                 currentCounterfactualFeatureInstanceList.push( currentCounterfactualFeatureInstance );
@@ -45,7 +44,7 @@ export class Deserializer {
             });
 
             // creating counterfactual instance object
-            const currentCounterFactualInstance: CounterfactualInstance = new CounterfactualInstance( currentCounterfactualFeatureInstanceList );
+            const currentCounterFactualInstance: CounterfactualInstance = new CounterfactualInstance( currentCounterfactualFeatureInstanceList, cfinstance['projectedX'], cfinstance['projectedY'] );
             parsedCounterfactualList.push( currentCounterFactualInstance );
             
 

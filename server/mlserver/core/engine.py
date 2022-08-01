@@ -8,6 +8,9 @@ from .featureselectors import FeatureSelectors
 ## serialization
 from ..serialization.encoders import CounterfactualInstanceEnconder
 
+## projections
+from ..projections.projector import Projector
+
 
 
 class Engine:
@@ -23,11 +26,12 @@ class Engine:
 
         cfs = self.counterfactualPredictor.get_counterfactual_set( queryinstance=params['queryinstance'], parameters=params['parameters'], constraints=params['constraints'] )
 
-        featureVectors = []
-        for cf in cfs['counterfactuals']:
+        ## getting cfs feature vectors
+        featureVectors = list( map( lambda cfinstance: cfinstance.get_instance_feature_vector(), cfs['counterfactuals'] ) )
+        projectedVectors = Projector.project_points( featureVectors, 'UMAP')
 
-            currentFeatureVector = list( map( lambda feature: feature.newValue, cf ) )
-            featureVectors.append(currentFeatureVector)
+        for index, cf in enumerate(cfs['counterfactuals']):
+            cfs['counterfactuals'][index].update_projected_coords( projectedVectors[index][0], projectedVectors[index][1] )
 
         return json.dumps( cfs, cls=CounterfactualInstanceEnconder )
 

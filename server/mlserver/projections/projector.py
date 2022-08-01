@@ -1,4 +1,5 @@
 import umap
+import numpy as np
 
 class Projector:
 
@@ -10,6 +11,6 @@ class Projector:
         embeddings = np.array(points, dtype=np.float32)
         
         ## projecting
-        umap_projection = UMAP(random_state=42).fit_transform(embeddings)
+        umap_projection = umap.UMAP(random_state=42).fit_transform(embeddings)
 
-        print(umap_projection)
+        return umap_projection.tolist()
