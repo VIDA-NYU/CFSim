@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { StaticScatterplotController } from './controller/static-scatterplot.controller';
 
 @Component({
@@ -6,7 +6,7 @@ import { StaticScatterplotController } from './controller/static-scatterplot.con
   templateUrl: './static-scatterplot.component.html',
   styleUrls: ['./static-scatterplot.component.scss']
 })
-export class StaticScatterplotComponent implements OnInit, AfterViewInit {
+export class StaticScatterplotComponent implements OnInit, OnChanges {
 
   // controller
   public staticScatterplotController: StaticScatterplotController | null = null;
@@ -15,7 +15,7 @@ export class StaticScatterplotComponent implements OnInit, AfterViewInit {
   @ViewChild('chartcontainerref') chartContainerRef!: ElementRef;
 
   // Input data
-  @Input('data') data: number[][] = [];
+  @Input('data') data:{x: number, y: number, sparsity: number}[] | undefined = [];
 
   constructor() { 
 
@@ -25,10 +25,13 @@ export class StaticScatterplotComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {}
 
-  ngAfterViewInit(): void {
 
-    this.staticScatterplotController?.render_chart( this.chartContainerRef.nativeElement );
+  ngOnChanges(changes: SimpleChanges): void {
 
+    if( !changes['data'].firstChange && changes['data'].currentValue.length > 0){
+      this.staticScatterplotController?.render_chart( this.chartContainerRef.nativeElement, this.data! );
+    }
+    
   }
 
 }

@@ -4,6 +4,10 @@ export class CounterfactualInstance {
 
     constructor( public featureInstances : CounterfactualFeatureInstance[], public projectedX: number, public projectedY: number ){}
 
+    public get_number_of_changing_features(): number {
+        return this.get_changing_features().length;
+    }
+
     public get_changing_features(): CounterfactualFeatureInstance[] {
 
         const changingFeatures: CounterfactualFeatureInstance[] = [];

@@ -24,6 +24,10 @@ export class ChartUtils {
         return d3.scaleLinear().domain(domain).range(range);
     }
 
+    public static create_sequential_color_scale( domain: [any, any], colorScale: any = d3.interpolateBlues  ): d3.ScaleSequential<any, any> {
+        return d3.scaleSequential(colorScale).domain(domain);
+    }
+
     public static create_horizontal_brush( selection: d3.Selection<any,any,any,any>, margins: { top: number, bottom: number, left: number, right: number }, container: HTMLElement ): any {
 
         // creating brush
