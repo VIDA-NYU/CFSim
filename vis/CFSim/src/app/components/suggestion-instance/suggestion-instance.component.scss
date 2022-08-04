@@ -58,6 +58,27 @@
 
 }
 
+.header-subcomponent{
+
+    display: flex;
+    flex: 1;
+
+}
+
+.feature-name-container{
+
+    justify-content: start;
+    margin: 0px 10px 0px 10px;
+
+}
+
+.score-value-container{
+
+    justify-content: flex-end;
+    margin: 0px 10px 0px 10px;
+
+}
+
 .card-body-container{
 
     display: flex;

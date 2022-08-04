@@ -27,6 +27,7 @@ import { ExplanationOverviewComponent } from './components/explanation-overview/
 import { StaticScatterplotComponent } from './components/charts/static-scatterplot/static-scatterplot.component';
 import { ExplanationMetricsListComponent } from './components/explanation-metrics-list/explanation-metrics-list.component';
 import { CounterfactualsMetricsInstanceComponent } from './components/counterfactuals-metrics-instance/counterfactuals-metrics-instance.component';
+import { StaticLineComponent } from './components/charts/static-line/static-line.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { CounterfactualsMetricsInstanceComponent } from './components/counterfac
     ExplanationOverviewComponent,
     StaticScatterplotComponent,
     ExplanationMetricsListComponent,
-    CounterfactualsMetricsInstanceComponent
+    CounterfactualsMetricsInstanceComponent,
+    StaticLineComponent
   ],
   imports: [
     BrowserModule,

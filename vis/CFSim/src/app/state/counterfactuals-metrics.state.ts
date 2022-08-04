@@ -9,7 +9,7 @@ import { CounterfactualsMetrics } from "../model/counterfactual-summary.model";
 export class CounterfactualsMetricsState {
 
     // counterfactual summary batch
-    public counterfactualBatchMetrics: CounterfactualsMetrics[] = [ new CounterfactualsMetrics( 10999, 10000 ) ];
+    public counterfactualBatchMetrics: CounterfactualsMetrics[] = [];
 
     constructor(){}
 

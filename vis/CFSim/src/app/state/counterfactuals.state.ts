@@ -30,7 +30,6 @@ export class CounterfactualsState {
 
         // requesting counterfactuals
         const response: {counterfactuals: any} = await MLAPI.get_counterfactual_set( queryInstance, parameters, constraints );
-        console.log('response: ', response);
 
         const parsedCounterfactuals: CounterfactualInstance[] = Deserializer.mlapi_get_counterfactual_set(response.counterfactuals);
         this.loadedCounterfactuals = parsedCounterfactuals;

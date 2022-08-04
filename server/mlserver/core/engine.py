@@ -27,7 +27,6 @@ class Engine:
         cfs = self.counterfactualPredictor.get_counterfactual_set( queryinstance=params['queryinstance'], parameters=params['parameters'], constraints=params['constraints'] )
 
         ## getting cfs feature vectors
-        print('CFS!!!!!: ', cfs)
         if( len(cfs['counterfactuals']) > 0 ):
             featureVectors = list( map( lambda cfinstance: cfinstance.get_instance_feature_vector(), cfs['counterfactuals'] ) )
             projectedVectors = Projector.project_points( featureVectors, 'UMAP')

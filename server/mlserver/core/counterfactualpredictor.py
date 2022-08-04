@@ -42,7 +42,6 @@ class CounterfactualPredictor:
         counterfactualInstances = counterfactualset['cfs_list'][0]
         queryInput = counterfactualset['test_data'][0][0]
 
-        print('counterfactualInstances: ', counterfactualInstances)
 
         parsedCounterfactuals = []
         for cf in counterfactualInstances:
@@ -57,7 +56,6 @@ class CounterfactualPredictor:
 
                 currentCounterfactualInstance.append( currentCF )
 
-            print('----------------------')
             
             currentCounterfactualInstance = CounterfactualInstance(currentCounterfactualInstance)
             parsedCounterfactuals.append(currentCounterfactualInstance)
