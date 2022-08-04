@@ -1,4 +1,3 @@
-import { query } from "@angular/animations";
 import { Injectable } from "@angular/core";
 import { MLAPI } from "../api/ml.api";
 import { CounterfactualFeatureInstance } from "../model/counterfactual-feature-instance.model";
@@ -7,6 +6,7 @@ import { CounterfactualFeatureInstance } from "../model/counterfactual-feature-i
 import { CounterfactualInstance } from "../model/counterfactual-instance.model";
 import { HistogramData } from "../model/types";
 import { Deserializer } from "../serialization/deserializer";
+import { CounterfactualsMetricsState } from "./counterfactuals-metrics.state";
 import { DataState } from "./data.state";
 
 @Injectable({
@@ -15,7 +15,7 @@ import { DataState } from "./data.state";
 
 export class CounterfactualsState {
 
-    constructor( public dataState: DataState ){}
+    constructor( public dataState: DataState, public counterfactualsMetricsState: CounterfactualsMetricsState ){}
 
     public loadedCounterfactuals: CounterfactualInstance[] = [];
 
@@ -30,8 +30,13 @@ export class CounterfactualsState {
 
         // requesting counterfactuals
         const response: {counterfactuals: any} = await MLAPI.get_counterfactual_set( queryInstance, parameters, constraints );
+        console.log('response: ', response);
+
         const parsedCounterfactuals: CounterfactualInstance[] = Deserializer.mlapi_get_counterfactual_set(response.counterfactuals);
         this.loadedCounterfactuals = parsedCounterfactuals;
+
+        // saving counterfactual batch summary
+        this.counterfactualsMetricsState.add_new_counterfactual_batch_summary( parsedCounterfactuals )
 
     }
 

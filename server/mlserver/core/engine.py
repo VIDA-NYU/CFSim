@@ -27,11 +27,13 @@ class Engine:
         cfs = self.counterfactualPredictor.get_counterfactual_set( queryinstance=params['queryinstance'], parameters=params['parameters'], constraints=params['constraints'] )
 
         ## getting cfs feature vectors
-        featureVectors = list( map( lambda cfinstance: cfinstance.get_instance_feature_vector(), cfs['counterfactuals'] ) )
-        projectedVectors = Projector.project_points( featureVectors, 'UMAP')
+        print('CFS!!!!!: ', cfs)
+        if( len(cfs['counterfactuals']) > 0 ):
+            featureVectors = list( map( lambda cfinstance: cfinstance.get_instance_feature_vector(), cfs['counterfactuals'] ) )
+            projectedVectors = Projector.project_points( featureVectors, 'UMAP')
 
-        for index, cf in enumerate(cfs['counterfactuals']):
-            cfs['counterfactuals'][index].update_projected_coords( projectedVectors[index][0], projectedVectors[index][1] )
+            for index, cf in enumerate(cfs['counterfactuals']):
+                cfs['counterfactuals'][index].update_projected_coords( projectedVectors[index][0], projectedVectors[index][1] )
 
         return json.dumps( cfs, cls=CounterfactualInstanceEnconder )
 

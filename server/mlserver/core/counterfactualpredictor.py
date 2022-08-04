@@ -29,10 +29,9 @@ class CounterfactualPredictor:
 
         ## formatting query input
         queryInput = pd.read_json(json.dumps( [queryinstance] ), orient ='records')
-        
-        ## generating cfs
-        cfs = self.loadedCounterfactualModel.get_counterfactuals(queryInput=queryInput, samplesize=sampleSize, constraints=constraints)
-        cfs = json.loads(cfs.to_json())
+
+        ## generating counterfactuals
+        cfs = self.loadedCounterfactualModel.get_counterfactuals(queryInput=queryInput, samplesize=sampleSize, constraints=constraints, features_to_vary=list(constraints.keys()) )
         
         return {'counterfactuals': self._parse_conterfactuals( cfs )}
 
@@ -42,6 +41,8 @@ class CounterfactualPredictor:
         featureNames = counterfactualset['feature_names']
         counterfactualInstances = counterfactualset['cfs_list'][0]
         queryInput = counterfactualset['test_data'][0][0]
+
+        print('counterfactualInstances: ', counterfactualInstances)
 
         parsedCounterfactuals = []
         for cf in counterfactualInstances:
@@ -56,6 +57,7 @@ class CounterfactualPredictor:
 
                 currentCounterfactualInstance.append( currentCF )
 
+            print('----------------------')
             
             currentCounterfactualInstance = CounterfactualInstance(currentCounterfactualInstance)
             parsedCounterfactuals.append(currentCounterfactualInstance)
@@ -77,6 +79,6 @@ class CounterfactualPredictor:
 
         ## creating dice model
         dice_model = dice_ml.Model(model=sklearn_model, backend='sklearn')
-        dice_exp = dice_ml.Dice(dice_data, dice_model, method='genetic')
+        dice_exp = dice_ml.Dice(dice_data, dice_model, method='random')
 
         return CounterfactualModel( id='diabetes', model=dice_exp )

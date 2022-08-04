@@ -1,0 +1,24 @@
+<div class="component-wrapper">
+
+    <div class="header-wrapper">
+        <div class="header-container">
+            <h1>Metrics</h1>
+        </div>
+    </div>
+
+    <div class="body-wrapper">
+
+        <div class="metrics-list-container">
+
+            <div class="scrollable-container">
+
+                <div class='metric-card-instance' *ngFor='let metric of this.metrics'>
+                    <app-counterfactuals-metrics-instance [metrics]='metric'></app-counterfactuals-metrics-instance>
+                </div>
+
+            </div>
+        </div>
+        
+    </div>
+
+</div>

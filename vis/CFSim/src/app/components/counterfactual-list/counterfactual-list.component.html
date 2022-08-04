@@ -7,9 +7,11 @@
     </div>
 
     <div class="body-wrapper">
-        <div class="scrollable-container">
+        
+        <div *ngIf='this.counterfactualsState.loadedCounterfactuals.length !== 0; else emtpy_container' class="scrollable-container">
 
             <mat-accordion>
+
                 <mat-expansion-panel *ngFor='let cfinstance of this.counterfactualsState.loadedCounterfactuals' hideToggle>
                   
                     <mat-expansion-panel-header collapsedHeight='120px' expandedHeight='140px'>
@@ -33,6 +35,14 @@
             </mat-accordion>
 
         </div>
+
+        <ng-template #emtpy_container>
+            <div class='message-container'>
+                <h2>No counterfactual found...</h2>
+            </div>
+        </ng-template>
+
+
     </div>
 
 </div>

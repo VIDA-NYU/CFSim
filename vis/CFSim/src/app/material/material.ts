@@ -14,6 +14,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 // holds all necessary modules
 const MATERIAL_MODULES = [
@@ -23,7 +24,7 @@ const MATERIAL_MODULES = [
     MatCardModule,      MatDialogModule,
     MatSelectModule,    MatSortModule,
     MatSliderModule,    MatExpansionModule,
-    MatTooltipModule
+    MatTooltipModule,   MatGridListModule
     
 ];
 

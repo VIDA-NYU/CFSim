@@ -13,7 +13,7 @@
             </div>
 
             <div class='explanation-metric-wrapper'>
-                <app-explanation-metrics></app-explanation-metrics>
+                <app-explanation-metrics-list [metrics]='this.counterfactualsMetricsState.counterfactualBatchMetrics'></app-explanation-metrics-list>
             </div>
 
             <!-- <div class="dataset-overview-wrapper">
@@ -50,8 +50,8 @@
             <div class="suggestions-overview-wrapper">
                 <app-suggestion-list></app-suggestion-list>
             </div>
-<!-- 
-            <div class="classification-overview-wrapper">
+            
+            <!--<div class="classification-overview-wrapper">
                 <app-classification-overview></app-classification-overview>
             </div> -->
 

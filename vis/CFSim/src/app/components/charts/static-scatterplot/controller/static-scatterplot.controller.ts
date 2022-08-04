@@ -24,7 +24,9 @@ export class StaticScatterplotController {
     public render_chart( chartContainer: HTMLElement, data: {x: number, y: number, sparsity: number}[] ){
 
         // initializing chart
-        this.intialize_chart( chartContainer );
+        if(!this.svg){
+            this.intialize_chart( chartContainer );
+        }
 
         // updating chart
         this.update_chart( data );
@@ -65,8 +67,13 @@ export class StaticScatterplotController {
                 .attr('r', 10)
                 .attr('class', 'cf-circle')
                 .attr('fill', (row: {x: number, y: number, sparsity: number}, index: number) => this.colorScale(row.sparsity) )
-                .style('z-index', 5)
-        );
+                .style('z-index', 5),
+            update => 
+                update
+                .attr('cx', (row: {x: number, y: number, sparsity: number}, index: number) => this.xScale(row.x) )
+                .attr('cy', (row: {x: number, y: number, sparsity: number}, index: number) => this.yScale(row.y) )
+                .attr('fill', (row: {x: number, y: number, sparsity: number}, index: number) => this.colorScale(row.sparsity) )
+            );
 
 
     }
