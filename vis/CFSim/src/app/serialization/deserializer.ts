@@ -10,7 +10,6 @@ export class Deserializer {
 
     public static dataapi_get_dataset_deserializer( requestobj: any, datasetName: string ): Dataset {
 
-
         // parsing features
         const histograms: { [featureName: string]: HistogramData[] } = requestobj.histograms;
         const features: string[] = requestobj.features;

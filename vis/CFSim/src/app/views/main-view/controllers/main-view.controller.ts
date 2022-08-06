@@ -11,10 +11,9 @@ export class MainViewController {
         public parametersState: ParametersState,
         public actionState: ActionsState ){}
 
-    public dataset_row_clicked( event: {queryinstance: any} ){
-
-        this.counterfactualsState.load_counterfactual_examples( event.queryinstance, this.parametersState.get_current_parameters() );
-    }
+    // public dataset_row_clicked( event: {queryinstance: any} ){
+    //     this.counterfactualsState.load_counterfactual_examples( event.queryinstance, this.parametersState.get_current_parameters() );
+    // }
 
     public action_deleted(): void {
 

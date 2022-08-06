@@ -11,8 +11,6 @@ from ..serialization.encoders import CounterfactualInstanceEnconder
 ## projections
 from ..projections.projector import Projector
 
-
-
 class Engine:
 
     def __init__(self):
@@ -24,7 +22,8 @@ class Engine:
     ## counterfactual generation
     def generate_counterfactual_set( self, params ):
 
-        cfs = self.counterfactualPredictor.get_counterfactual_set( queryinstance=params['queryinstance'], parameters=params['parameters'], constraints=params['constraints'] )
+        # cfs = self.counterfactualPredictor.get_counterfactual_set( queryinstance=params['queryinstance'], parameters=params['parameters'], constraints=params['constraints'] )
+        cfs = self.counterfactualPredictor.get_preprocessed_counterfactual_set( rowid=params['rowid'])
 
         ## getting cfs feature vectors
         if( len(cfs['counterfactuals']) > 0 ):

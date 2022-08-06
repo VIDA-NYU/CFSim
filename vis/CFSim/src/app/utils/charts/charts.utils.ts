@@ -24,7 +24,7 @@ export class ChartUtils {
         return d3.scaleLinear().domain(domain).range(range);
     }
 
-    public static create_sequential_color_scale( domain: [any, any], colorScale: any = d3.interpolateBlues  ): d3.ScaleSequential<any, any> {
+    public static create_sequential_color_scale( domain: [any, any], colorScale: any = d3.interpolateBlues  ): d3.ScaleSequential<number, string> {
         return d3.scaleSequential(colorScale).domain(domain);
     }
 

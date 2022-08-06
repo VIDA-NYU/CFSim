@@ -37,4 +37,5 @@ class CSVLoader:
         ## TODO: Remove it from here
         histograms = HistogramGenerator.create_histogram( df )
 
-        return {'features': filtereddf.columns.values, 'rows': filtereddf.values, 'predictions': [ 0, 1, 0, 0, 0, 1 ,1], 'histograms': histograms }
+        ## removing row id from features
+        return {'features': filtereddf.columns.values, 'rows': filtereddf.values, 'predictions': [0, 1, 0, 0, 0, 1 ,1], 'histograms': histograms }

@@ -18,31 +18,34 @@ export class CounterfactualsState {
     constructor( public dataState: DataState, public counterfactualsMetricsState: CounterfactualsMetricsState ){}
 
     public loadedCounterfactuals: CounterfactualInstance[] = [];
+    public filteredCounterfactuals: CounterfactualInstance[] = [];
 
     // current query instance
     public currentQueryInstance: any = {};
+    public currentRowID: number = 0;
 
 
-    public async load_counterfactual_examples( queryInstance: any, parameters: {  ['samplesize']: number, ['modelname']: string }, constraints: { [featureName: string]: number[] } = {} ): Promise<void> {
+    public async load_counterfactual_examples( queryInstance: any, rowid: number,  parameters: {  ['samplesize']: number, ['modelname']: string }, constraints: { [featureName: string]: number[] } = {} ): Promise<void> {
         
         // saving current query instance
         this.currentQueryInstance = queryInstance;
+        this.currentRowID = rowid;
 
         // requesting counterfactuals
-        const response: {counterfactuals: any} = await MLAPI.get_counterfactual_set( queryInstance, parameters, constraints );
+        const response: {counterfactuals: any} = await MLAPI.get_counterfactual_set( queryInstance, rowid, parameters, constraints );
 
         const parsedCounterfactuals: CounterfactualInstance[] = Deserializer.mlapi_get_counterfactual_set(response.counterfactuals);
         this.loadedCounterfactuals = parsedCounterfactuals;
 
         // saving counterfactual batch summary
-        this.counterfactualsMetricsState.add_new_counterfactual_batch_summary( parsedCounterfactuals )
+        this.counterfactualsMetricsState.add_new_counterfactual_batch_summary( parsedCounterfactuals );
 
     }
 
     public async update_counterfactual_examples( parameters: {  ['samplesize']: number, ['modelname']: string }, constraints: { [featureName: string]: number[] } = {} ): Promise<void> {
 
         // requesting counterfactuals
-        const response: {counterfactuals: any} = await MLAPI.get_counterfactual_set( this.currentQueryInstance, parameters, constraints );
+        const response: {counterfactuals: any} = await MLAPI.get_counterfactual_set( this.currentQueryInstance, this.currentRowID, parameters, constraints );
         const parsedCounterfactuals: CounterfactualInstance[] = Deserializer.mlapi_get_counterfactual_set(response.counterfactuals);
         this.loadedCounterfactuals = parsedCounterfactuals;
 

@@ -13,7 +13,6 @@ class Engine:
         pass
 
     def load_dataset( self, params ):
-        print('TODO: ', params['filters'])
         return json.dumps(DatasetLoader.load_dataset(params['datasetname'], filters=params['filters']), cls=DatasetEncoder)
 
     def get_available_datasets( self ):

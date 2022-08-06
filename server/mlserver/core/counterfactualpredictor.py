@@ -9,6 +9,7 @@ import json
 from ..model.counterfactualmodel import CounterfactualModel
 from ..model.counterfactualfeatureinstance import CounterfactualFeatureInstance
 from ..model.counterfactualinstance import CounterfactualInstance
+from ..model.counterfactuals.preprocessedcounterfactualmodel import PreprocessedCounterfactualModel
 from dataserver.datasource.datasetloader import DatasetLoader
 
 class CounterfactualPredictor:
@@ -16,9 +17,10 @@ class CounterfactualPredictor:
     def __init__(self):
 
         self.loadedCounterfactualModel = None
-   
+        self.loadedCounterfactualBatch = None
+    
+    ## TODO: Change the name of this method to something along the lines of get_dice_counterfactual_set
     def get_counterfactual_set( self, queryinstance, parameters, constraints={} ):
-
 
         ## parsing parameters
         model = parameters['modelname']
@@ -36,6 +38,11 @@ class CounterfactualPredictor:
         return {'counterfactuals': self._parse_conterfactuals( cfs )}
 
 
+    def get_preprocessed_counterfactual_set( self, rowid):
+
+        cfs = PreprocessedCounterfactualModel.get_counterfactuals( rowid )
+        return {'counterfactuals': self._parse_conterfactuals( cfs )} 
+
     def _parse_conterfactuals( self, counterfactualset ):
 
         featureNames = counterfactualset['feature_names']
@@ -44,7 +51,7 @@ class CounterfactualPredictor:
 
 
         parsedCounterfactuals = []
-        for cf in counterfactualInstances:
+        for index, cf in enumerate(counterfactualInstances):
 
             currentCounterfactualInstance = []
             for featureIndex, featureName  in enumerate(featureNames):
@@ -57,12 +64,11 @@ class CounterfactualPredictor:
                 currentCounterfactualInstance.append( currentCF )
 
             
-            currentCounterfactualInstance = CounterfactualInstance(currentCounterfactualInstance)
+            currentCounterfactualInstance = CounterfactualInstance(currentCounterfactualInstance, uid=index)
             parsedCounterfactuals.append(currentCounterfactualInstance)
 
         
         return parsedCounterfactuals
-
 
     def _load_counterfactual_model( self ):
         

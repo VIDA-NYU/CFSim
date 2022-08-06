@@ -9,7 +9,6 @@ import { MaterialModule } from './material/material';
 import { DatasetOverviewComponent } from './components/dataset-overview/dataset-overview.component';
 import { ParameterSelectorComponent } from './components/parameter-selector/parameter-selector.component';
 import { CounterfactualListComponent } from './components/counterfactual-list/counterfactual-list.component';
-import { ClassificationOverviewComponent } from './components/classification-overview/classification-overview.component';
 import { CounterfactualInstanceComponent } from './components/counterfactual-instance/counterfactual-instance.component';
 import { DataLoaderDialogComponent } from './dialogs/data-loader-dialog/data-loader-dialog.component';
 import { ActionListComponent } from './components/action-list/action-list.component';
@@ -28,6 +27,7 @@ import { StaticScatterplotComponent } from './components/charts/static-scatterpl
 import { ExplanationMetricsListComponent } from './components/explanation-metrics-list/explanation-metrics-list.component';
 import { CounterfactualsMetricsInstanceComponent } from './components/counterfactuals-metrics-instance/counterfactuals-metrics-instance.component';
 import { StaticLineComponent } from './components/charts/static-line/static-line.component';
+import { StaticGlScatterplotComponent } from './components/charts/static-gl-scatterplot/static-gl-scatterplot.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,6 @@ import { StaticLineComponent } from './components/charts/static-line/static-line
     DatasetOverviewComponent,
     ParameterSelectorComponent,
     CounterfactualListComponent,
-    ClassificationOverviewComponent,
     CounterfactualInstanceComponent,
     DataLoaderDialogComponent,
     ActionListComponent,
@@ -54,7 +53,8 @@ import { StaticLineComponent } from './components/charts/static-line/static-line
     StaticScatterplotComponent,
     ExplanationMetricsListComponent,
     CounterfactualsMetricsInstanceComponent,
-    StaticLineComponent
+    StaticLineComponent,
+    StaticGlScatterplotComponent
   ],
   imports: [
     BrowserModule,

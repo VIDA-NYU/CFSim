@@ -4,13 +4,13 @@ import { Serializer } from '../serialization/serializer';
 
 export class MLAPI {
 
-    public static async get_counterfactual_set( queryInstance: any, parameters: any, constraints: any ): Promise< {counterfactuals: any} > {
+    public static async get_counterfactual_set( queryInstance: any, rowid: number, parameters: any, constraints: any ): Promise< {counterfactuals: any} > {
 
         // url
         const url = `${environment.mlserver}/generatecounterfactualset`;
 
         // post parameters
-        const requestParams = { 'queryinstance': queryInstance, parameters, constraints  } ;
+        const requestParams = { 'queryinstance': queryInstance, 'rowid': rowid, parameters, constraints  } ;
 
         // post header
         const headers = {

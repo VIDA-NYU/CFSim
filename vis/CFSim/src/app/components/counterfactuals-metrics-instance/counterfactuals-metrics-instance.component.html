@@ -5,24 +5,46 @@
             <div class="card-content">
 
                 <div class="card-header-container">
-
+                    <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                        <mat-icon>restart_alt</mat-icon>
+                    </button>
                 </div>
                 
                 <div class="card-body-container">
 
                     <div class="body-component-container">
-                        <h2><b>Distance:</b></h2>
-                        &nbsp;
-                        <h2>{{ this.metrics.averageDistance }}</h2>
+
+                        <div class="body-subcomponent-container">
+                            <h2><b>Distance:</b></h2>
+                            &nbsp;
+                            <h2>{{ this.metrics.averageDistance }}</h2>
+                        </div>
+
+                        <div class="body-subcomponent-container">
+                            <h2><b>Prediction:</b></h2>
+                            &nbsp;
+                            <h2>{{ this.metrics.averageDistance }}</h2>
+                        </div>
+                        
                     </div>
 
                     <div class="body-component-container">
 
-                        <h2><b>Sparsity:</b></h2>
-                        &nbsp;
-                        <h2>{{ this.metrics.numberFeatureChanges }}</h2>
+                        <div class="body-subcomponent-container">
+                            <h2><b>Sparsity:</b></h2>
+                            &nbsp;
+                            <h2>{{ this.metrics.averageDistance }}</h2>
+                        </div>
+
+                        <div class="body-subcomponent-container">
+                            <h2><b>Cost:</b></h2>
+                            &nbsp;
+                            <h2>{{ this.metrics.averageDistance }}</h2>
+                        </div>
                         
                     </div>
+
+
 
                 </div>
                 
