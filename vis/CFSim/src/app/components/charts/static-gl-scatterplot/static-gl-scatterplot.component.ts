@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { StaticGlScatterplotController } from './controller/static-gl-scatterplot.controller';
 
 @Component({
@@ -13,10 +13,13 @@ export class StaticGlScatterplotComponent implements OnInit, OnChanges {
 
   // dom ref
   @ViewChild('chartcontainerref') chartContainerRef!: ElementRef;
+  @ViewChild('chartlegendcontainerref') chartlegendcontainerref!: ElementRef;
 
   // input data
-  @Input('datapoints') datapoints: number[][] = [];
-  @Input('uids') uids: number[] = [];
+  @Input('datapoints') datapoints: { 'coords': number[][], 'uids': number[], 'sparsity': number[] } = { 'coords': [], 'uids': [], 'sparsity': [] };
+
+  // events
+  @Output('onpointsselected') onpointsselected: EventEmitter<{'uids': number[]}> = new EventEmitter<{'uids': number[]}>();
 
   constructor() { 
 
@@ -24,12 +27,17 @@ export class StaticGlScatterplotComponent implements OnInit, OnChanges {
 
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
 
-  ngOnChanges(changes: SimpleChanges): void {
+    const events: { [eventname: string]: EventEmitter<any> } = {'onpointsselected': this.onpointsselected};
+    this.staticGLScatterplotController?.initialize_controller( events );
+    
+  }
 
-    if( 'datapoints' in changes && changes['datapoints'] && changes['datapoints'].currentValue.length > 0 && this.chartContainerRef ){
-      this.staticGLScatterplotController?.initialize_projection( this.chartContainerRef.nativeElement, this.datapoints, this.uids );
+  ngOnChanges(changes: SimpleChanges): void { 
+
+    if( 'datapoints' in changes && changes['datapoints'] && changes['datapoints'].currentValue.coords.length > 0 && this.chartContainerRef ){
+      this.staticGLScatterplotController?.initialize_projection( this.chartContainerRef.nativeElement, this.chartlegendcontainerref.nativeElement, this.datapoints.coords, this.datapoints.uids, this.datapoints.sparsity );
     }
 
   }

@@ -8,11 +8,11 @@
 
     <div class="body-wrapper">
         
-        <div *ngIf='this.counterfactualsState.filteredCounterfactuals.length !== 0; else emtpy_container' class="scrollable-container">
+        <div *ngIf='this.counterfactuallist.length !== 0; else emtpy_container' class="scrollable-container">
 
             <mat-accordion>
 
-                <mat-expansion-panel *ngFor='let cfinstance of this.counterfactualsState.filteredCounterfactuals' hideToggle>
+                <mat-expansion-panel *ngFor='let cfinstance of this.counterfactuallist' hideToggle>
                   
                     <mat-expansion-panel-header collapsedHeight='120px' expandedHeight='140px'>
                         <mat-panel-title>

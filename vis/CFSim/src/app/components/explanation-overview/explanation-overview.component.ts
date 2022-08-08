@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { CounterfactualInstance } from 'src/app/model/counterfactual-instance.model';
 import { ExplanationOverviewController } from './controller/explanation-overview.controller';
 
@@ -13,7 +13,10 @@ export class ExplanationOverviewComponent implements OnInit, OnChanges {
   public explanationOverviewController: ExplanationOverviewController | null = null;
 
   // input data
-  @Input('counterfactuals') counterfactuals: CounterfactualInstance[] = []; 
+  @Input('counterfactuals') counterfactuals: { [uids: number]: CounterfactualInstance } = {}; 
+
+  // events
+  @Output('onpointsselected') onpointsselected: EventEmitter<{'uids': number[]}> = new EventEmitter<{'uids': number[]}>();
 
   constructor() {
 
@@ -26,7 +29,7 @@ export class ExplanationOverviewComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     
     if( !changes['counterfactuals'].firstChange && changes['counterfactuals'].currentValue != 0 ){
-      this.explanationOverviewController?.update_projected_counterfactuals(changes['counterfactuals'].currentValue);
+      this.explanationOverviewController?.update_projected_counterfactuals(Object.values( changes['counterfactuals'].currentValue));
     }
 
   }

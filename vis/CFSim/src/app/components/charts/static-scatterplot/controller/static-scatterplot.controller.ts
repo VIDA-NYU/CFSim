@@ -79,7 +79,7 @@ export class StaticScatterplotController {
             .append('text')
             .attr('x', 160 )
             .attr('y', 20 + this.margins.bottom / 2 )
-            .text('Sparcity')
+            .text('Sparsity')
 
 
     }

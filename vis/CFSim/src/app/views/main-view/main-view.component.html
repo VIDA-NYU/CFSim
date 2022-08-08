@@ -9,7 +9,10 @@
         <div class="left-sidebar-wrapper sidebar-wrapper">
 
             <div class='explanation-overview-wrapper'>
-                <app-explanation-overview [counterfactuals]='this.counterfactualsState.loadedCounterfactuals'></app-explanation-overview>
+                <app-explanation-overview 
+                    [counterfactuals]='this.counterfactualsState.loadedCounterfactuals'
+                    (onpointsselected)='this.mainViewController?.counterfactual_points_selected($event)'>
+                </app-explanation-overview>
             </div>
 
             <div class='explanation-metric-wrapper'>
@@ -33,7 +36,7 @@
         <mat-divider vertical></mat-divider>
 
         <div class="main-section-wrapper">
-            <app-counterfactual-list></app-counterfactual-list>
+            <app-counterfactual-list [counterfactuallist]='this.counterfactualsState.filteredCounterfactuals'></app-counterfactual-list>
         </div>
 
         <mat-divider vertical></mat-divider>

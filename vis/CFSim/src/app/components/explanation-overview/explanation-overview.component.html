@@ -8,7 +8,10 @@
 
 
     <div class="body-wrapper">
-        <app-static-gl-scatterplot [datapoints]='this.explanationOverviewController!.projectedCounterfactuals'></app-static-gl-scatterplot>
+        <app-static-gl-scatterplot 
+            [datapoints]='this.explanationOverviewController!.projectedCounterfactuals'
+            (onpointsselected)='this.onpointsselected.emit($event)'>
+        </app-static-gl-scatterplot>
         <!-- <app-static-scatterplot [data]='this.explanationOverviewController?.projectedCounterfactuals'></app-static-scatterplot> -->
     </div>
 

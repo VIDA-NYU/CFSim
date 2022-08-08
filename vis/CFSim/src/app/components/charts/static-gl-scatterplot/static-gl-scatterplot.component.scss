@@ -26,6 +26,37 @@
 .chart-container{
 
     display: flex;
+    flex: 8;    
+}
+
+.chart-header{
+
+    display: flex;
     flex: 1;
+}
+
+.chart-footer{
+
+    display: flex;
+    flex: 1;
+}
+
+.icon-list{
+
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+}
+
+.icon-container{
     
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 50px;
+    height: 100%;
+
+    margin: 0px 10px 0px 10px;
+
 }
