@@ -1,12 +1,35 @@
 import { CounterfactualFeatureInstance } from "./counterfactual-feature-instance.model";
 
+// third-party
+import * as _ from 'lodash';
+
 export class CounterfactualInstance {
 
-    constructor( public uid: number, public featureInstances : CounterfactualFeatureInstance[], public projectedX: number, public projectedY: number ){}
+    // fast access to feature instsances
+    public featureRefs: { [featureName: string]: CounterfactualFeatureInstance } = {};
 
-    public is_within_constraints(): boolean {
+    constructor( public uid: number, public featureInstances : CounterfactualFeatureInstance[], public projectedX: number, public projectedY: number ){
 
-        return true;
+        // indexing features by name
+        _.forEach( featureInstances, (featureInstance: CounterfactualFeatureInstance) => {
+
+            this.featureRefs[featureInstance.featureName] = featureInstance;
+
+        });
+
+    }
+
+    public is_within_constraints( constraints: { [featureName: string]: number[] } ): boolean {
+        
+        let withinBounds: boolean = true;
+        _.forOwn( constraints, (value, key) => {
+
+            const currentFeature: CounterfactualFeatureInstance = this.featureRefs[ key ];
+            if( withinBounds ) withinBounds = currentFeature.is_within_bounds( value );
+
+        });
+
+        return withinBounds;
     }
 
     public get_number_of_changing_features(): number {

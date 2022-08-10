@@ -8,7 +8,6 @@ import { CounterfactualsMetrics } from 'src/app/model/counterfactual-summary.mod
 })
 export class CounterfactualsMetricsInstanceComponent implements OnInit {
 
-
   @Input('metrics') metrics!: CounterfactualsMetrics;
 
   constructor() { }

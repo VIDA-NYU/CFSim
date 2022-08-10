@@ -28,6 +28,9 @@ import { ExplanationMetricsListComponent } from './components/explanation-metric
 import { CounterfactualsMetricsInstanceComponent } from './components/counterfactuals-metrics-instance/counterfactuals-metrics-instance.component';
 import { StaticLineComponent } from './components/charts/static-line/static-line.component';
 import { StaticGlScatterplotComponent } from './components/charts/static-gl-scatterplot/static-gl-scatterplot.component';
+import { FilterKnobsComponent } from './components/filter-knobs/filter-knobs.component';
+import { FeatureVariationComponent } from './components/feature-variation/feature-variation.component';
+import { StaticBarplotComponent } from './components/charts/static-barplot/static-barplot.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,10 @@ import { StaticGlScatterplotComponent } from './components/charts/static-gl-scat
     ExplanationMetricsListComponent,
     CounterfactualsMetricsInstanceComponent,
     StaticLineComponent,
-    StaticGlScatterplotComponent
+    StaticGlScatterplotComponent,
+    FilterKnobsComponent,
+    FeatureVariationComponent,
+    StaticBarplotComponent
   ],
   imports: [
     BrowserModule,

@@ -16,7 +16,7 @@ export class ActionListComponent implements OnInit {
   @Input('datasetloaded') datasetLoaded: boolean = false;
 
   // output events emitters
-  @Output('ondeleteclicked') ondeleteclicked: EventEmitter<{'action': Action}> = new EventEmitter<{'action': Action}>();
+  @Output('ondeleteclicked') ondeleteclicked: EventEmitter<{'action': Action, 'index': number}> = new EventEmitter<{'action': Action, 'index': number}>();
 
   // controller
   public actionListController: ActionListController | null = null;

@@ -24,6 +24,7 @@ export class StaticGlScatterplotController {
 
     // metadata refs
     public uids: number[] = [];
+    public indexedUIDS: { [uid: number]: number } = {};
 
     public events: { [eventname: string]: EventEmitter<any> } = {};
 
@@ -40,6 +41,10 @@ export class StaticGlScatterplotController {
 
         // saving metadata refs
         this.uids = uids;
+        uids.forEach( (uid: number, index: number) => {
+            this.indexedUIDS[uid] = index;
+        });
+
 
         // calculating scales
         this.create_scales( sparsity );
@@ -63,6 +68,17 @@ export class StaticGlScatterplotController {
 
         if(this.brushActive){ this.scatterGL.setSelectMode(); }
         else{ this.scatterGL.setPanMode(); }
+    }
+
+    public select_points( uids: number[] ): void {
+
+        const selectedIndices: number[] = [];
+        uids.forEach( (uid: number) => {
+            selectedIndices.push(this.indexedUIDS[uid]);  
+        });
+
+        this.scatterGL.select( selectedIndices );
+
     }
 
     // private methods 

@@ -15,7 +15,12 @@ export class CounterfactualsMetricsState {
 
     public add_new_counterfactual_batch_summary( counterfactualInstances: CounterfactualInstance[] ): void {
 
-        const currentCounterfactualBatchMetrics: CounterfactualsMetrics = new CounterfactualsMetrics( 10999, 10000 );
+        let averageSparsity: number = 0;
+        counterfactualInstances.forEach( (cf: CounterfactualInstance) => {
+            averageSparsity += cf.get_number_of_changing_features();
+        });
+        averageSparsity = averageSparsity / counterfactualInstances.length;
+        const currentCounterfactualBatchMetrics: CounterfactualsMetrics = new CounterfactualsMetrics( averageSparsity );
         this.counterfactualBatchMetrics.push( currentCounterfactualBatchMetrics );
 
     }

@@ -34,7 +34,21 @@
 
 
 // LOW-LEVEL COMPONENTS
+.feature-variation-wrapper{
+
+    display: flex;
+    flex: 4;
+
+}
+
 .explanation-overview-wrapper{
+
+    display: flex;
+    flex: 3;
+
+}
+
+.filter-knobs-wrapper{
 
     display: flex;
     flex: 1;
@@ -44,7 +58,7 @@
 .explanation-metric-wrapper{
 
     display: flex;
-    flex: 2;
+    flex: 3;
 
 }
 

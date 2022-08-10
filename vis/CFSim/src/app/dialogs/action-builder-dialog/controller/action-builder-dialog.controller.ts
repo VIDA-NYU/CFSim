@@ -64,6 +64,7 @@ export class ActionBuilderDialogController {
         const serializedActions: { [featureName: string]: number[] } = Serializer.mlapi_update_counterfactual_examples_actions_parameter( currentActions );
     
         // this.counterfactualsState.update_counterfactual_examples( {samplesize: 10, modelname: 'DICE'},  serializedActions );
+        this.counterfactualsState.filter_counterfactuals_by_constraints(serializedActions );
 
         // updating feature suggestions
         this.featureSuggestionState.update_suggestions( this.actionsState.created_actions );

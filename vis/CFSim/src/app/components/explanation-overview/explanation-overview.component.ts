@@ -14,6 +14,7 @@ export class ExplanationOverviewComponent implements OnInit, OnChanges {
 
   // input data
   @Input('counterfactuals') counterfactuals: { [uids: number]: CounterfactualInstance } = {}; 
+  @Input('filteredcounterfactuals') filteredcounterfactuals: CounterfactualInstance[] = [];
 
   // events
   @Output('onpointsselected') onpointsselected: EventEmitter<{'uids': number[]}> = new EventEmitter<{'uids': number[]}>();
@@ -28,8 +29,12 @@ export class ExplanationOverviewComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     
-    if( !changes['counterfactuals'].firstChange && changes['counterfactuals'].currentValue != 0 ){
+    if( 'counterfactuals' in changes && !changes['counterfactuals'].firstChange && changes['counterfactuals'].currentValue != 0 ){
       this.explanationOverviewController?.update_projected_counterfactuals(Object.values( changes['counterfactuals'].currentValue));
+    }
+
+    if( 'filteredcounterfactuals' in changes && !changes['filteredcounterfactuals'].firstChange && changes['filteredcounterfactuals'].currentValue != 0 ){
+      this.explanationOverviewController?.updated_filtered_uids( changes['filteredcounterfactuals'].currentValue )
     }
 
   }

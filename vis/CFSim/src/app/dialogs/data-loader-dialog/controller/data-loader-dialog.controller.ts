@@ -57,9 +57,13 @@ export class DataLoaderDialogController {
     public on_row_selected( event: any ): void {
 
         // TODO: Look at this afterwords and think how to not embbed the row id into the data row
+
         const rowid: number = event.queryinstance.id;
-        const queryInstance = event.queryinstance;
+
+        // copying instance
+        const queryInstance = JSON.parse(JSON.stringify(event.queryinstance));
         delete queryInstance['id'];
+        delete queryInstance['proba'];
 
         this.counterfactualsState.load_counterfactual_examples( event.queryinstance, rowid, this.parametersState.get_current_parameters() );
 

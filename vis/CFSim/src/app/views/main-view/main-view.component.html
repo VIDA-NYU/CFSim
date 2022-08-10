@@ -10,13 +10,22 @@
 
             <div class='explanation-overview-wrapper'>
                 <app-explanation-overview 
+                    [filteredcounterfactuals]='this.counterfactualsState.filteredCounterfactuals'
                     [counterfactuals]='this.counterfactualsState.loadedCounterfactuals'
                     (onpointsselected)='this.mainViewController?.counterfactual_points_selected($event)'>
                 </app-explanation-overview>
             </div>
 
+            <div class='feature-variation-wrapper'>
+                <app-feature-variation [filteredcounterfactuals]='this.counterfactualsState.filteredCounterfactuals'></app-feature-variation>
+            </div>
+
+            <!-- <div class='filter-knobs-wrapper'>
+                <app-filter-knobs (filterschanged)="this.mainViewController?.filters_changed($event)"></app-filter-knobs>
+            </div> -->
+
             <div class='explanation-metric-wrapper'>
-                <app-explanation-metrics-list [metrics]='this.counterfactualsMetricsState.counterfactualBatchMetrics'></app-explanation-metrics-list>
+                <app-explanation-metrics-list [filteredcounterfactuals]='this.counterfactualsState.filteredCounterfactuals'></app-explanation-metrics-list>
             </div>
 
             <!-- <div class="dataset-overview-wrapper">
@@ -45,7 +54,7 @@
 
             <div class="action-guide-wrapper">
                 <app-action-list
-                    (ondeleteclicked)='this.mainViewController?.action_deleted()' 
+                    (ondeleteclicked)='this.mainViewController?.action_deleted($event)' 
                     [datasetloaded]='this.dataState.loadedDataset.is_loaded()'>
                 </app-action-list>
             </div>

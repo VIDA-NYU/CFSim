@@ -10,4 +10,8 @@ export class CounterfactualFeatureInstance {
         return this.variation !== 0;
     }
 
+    public is_within_bounds( bounds: number[] ): boolean {
+        return (this.newValue >= bounds[0]) && (this.newValue <= bounds[1]);  
+    }
+
 }

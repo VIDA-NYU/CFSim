@@ -28,6 +28,10 @@ export class ChartUtils {
         return d3.scaleSequential(colorScale).domain(domain);
     }
 
+    public static create_band_scale( domain: string[], range: [number, number]): d3.ScaleBand<string> {
+        return d3.scaleBand().domain(domain).range(range);
+    }
+
     public static create_horizontal_brush( selection: d3.Selection<any,any,any,any>, margins: { top: number, bottom: number, left: number, right: number }, container: HTMLElement ): any {
 
         // creating brush

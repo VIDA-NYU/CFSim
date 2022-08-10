@@ -43,16 +43,6 @@ export class CounterfactualsState {
 
     }
 
-
-    public filter_counterfactuals_by_constraints( constraints: { [featureName: string]: number[] }): void {
-
-        _.forEach( this.loadedCounterfactuals, (cf: CounterfactualInstance) => {
-            
-        });
-
-    }
-
-
     public async update_counterfactual_examples( parameters: {  ['samplesize']: number, ['modelname']: string }, constraints: { [featureName: string]: number[] } = {} ): Promise<void> {
 
         // requesting counterfactuals
@@ -70,13 +60,36 @@ export class CounterfactualsState {
         return this.dataState.loadedDataset.get_features_histograms( features );
     }
 
-    public filter_counterfactuals( uids: number[] ): void {
+    // filters
+    public filter_counterfactuals_by_sparsity( sparsity: number ): void {
+
+        const filteredCounterfactuals: CounterfactualInstance[] = [];
+        _.forEach( this.loadedCounterfactuals, (cf: CounterfactualInstance) => {
+            if( cf.get_number_of_changing_features() == sparsity ) filteredCounterfactuals.push(cf);
+        });
+
+        this.filteredCounterfactuals = filteredCounterfactuals;
+
+    }
+
+    public filter_counterfactuals_by_uid( uids: number[] ): void {
 
         const filteredCounterfactuals: CounterfactualInstance[] = [];
         uids.forEach( (uid: number) => {
             filteredCounterfactuals.push( this.loadedCounterfactuals[uid] );
         });
         this.filteredCounterfactuals = filteredCounterfactuals;
+    }
+
+    public filter_counterfactuals_by_constraints( constraints: { [featureName: string]: number[] }): void {
+
+        const filteredCounterfactuals: CounterfactualInstance[] = [];
+        _.forEach( this.loadedCounterfactuals, (cf: CounterfactualInstance) => {
+            if(cf.is_within_constraints(constraints)) filteredCounterfactuals.push(cf);
+        });
+
+        this.filteredCounterfactuals = filteredCounterfactuals;
+
     }
 
 }

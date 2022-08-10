@@ -10,6 +10,7 @@
     <div class="body-wrapper">
         <app-static-gl-scatterplot 
             [datapoints]='this.explanationOverviewController!.projectedCounterfactuals'
+            [currentselection]='this.explanationOverviewController!.filteredCounterfactualUIDs'
             (onpointsselected)='this.onpointsselected.emit($event)'>
         </app-static-gl-scatterplot>
         <!-- <app-static-scatterplot [data]='this.explanationOverviewController?.projectedCounterfactuals'></app-static-scatterplot> -->

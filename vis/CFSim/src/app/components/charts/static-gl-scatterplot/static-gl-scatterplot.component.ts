@@ -17,6 +17,7 @@ export class StaticGlScatterplotComponent implements OnInit, OnChanges {
 
   // input data
   @Input('datapoints') datapoints: { 'coords': number[][], 'uids': number[], 'sparsity': number[] } = { 'coords': [], 'uids': [], 'sparsity': [] };
+  @Input('currentselection') currentselection: number[] = [];
 
   // events
   @Output('onpointsselected') onpointsselected: EventEmitter<{'uids': number[]}> = new EventEmitter<{'uids': number[]}>();
@@ -39,6 +40,11 @@ export class StaticGlScatterplotComponent implements OnInit, OnChanges {
     if( 'datapoints' in changes && changes['datapoints'] && changes['datapoints'].currentValue.coords.length > 0 && this.chartContainerRef ){
       this.staticGLScatterplotController?.initialize_projection( this.chartContainerRef.nativeElement, this.chartlegendcontainerref.nativeElement, this.datapoints.coords, this.datapoints.uids, this.datapoints.sparsity );
     }
+
+    if( 'currentselection' in changes && changes['currentselection'] && changes['currentselection'].currentValue.length > 0 && this.chartContainerRef ){
+      this.staticGLScatterplotController?.select_points( changes['currentselection'].currentValue );
+    }
+
 
   }
 
